@@ -1,0 +1,18 @@
+.game {
+  display: grid;
+  gap: var(--space-6);
+  align-items: start;
+
+  @media (min-width: 900px) {
+    grid-template-columns: minmax(16rem, 0.7fr) 1.3fr;
+  }
+}
+
+.intro {
+  display: grid;
+  gap: var(--space-3);
+
+  h2 {
+    font-size: var(--step-4);
+  }
+}

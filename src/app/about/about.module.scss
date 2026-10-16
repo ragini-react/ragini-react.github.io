@@ -1,0 +1,290 @@
+// ---- hero stamps ----------------------------------------------------------------
+
+.stamps {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: center;
+  padding-block: var(--space-4);
+
+  @media (min-width: 900px) {
+    justify-items: start;
+    padding-left: var(--space-7);
+  }
+}
+
+.stamp {
+  display: grid;
+  gap: 0.1rem;
+  width: min(19rem, calc(100% - 3.4rem));
+  padding: 0.7rem 1.1rem;
+  border: 3px solid var(--red-ink);
+  border-radius: 8px;
+  color: var(--red-ink);
+  rotate: calc(-6deg + var(--i) * 5deg);
+  translate: calc(var(--i) * 1.6rem) 0;
+  mix-blend-mode: multiply;
+  animation: stamp 0.45s cubic-bezier(0.3, 1.6, 0.6, 1) both;
+  animation-delay: calc(0.3s + var(--i) * 0.45s);
+
+  &:last-child {
+    border-color: var(--red);
+    background: color-mix(in srgb, var(--red) 8%, transparent);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .stamp {
+    mix-blend-mode: normal;
+  }
+}
+
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    scale: 1.8;
+  }
+  60% {
+    opacity: 1;
+    scale: 0.94;
+  }
+  100% {
+    scale: 1;
+  }
+}
+
+.stampYear {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--step-4);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.stampText {
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+}
+
+// ---- legend + markers ---------------------------------------------------------
+
+.legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  font-size: 0.92rem;
+  color: var(--ink-muted);
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.mark {
+  display: inline-block;
+  width: 1.3rem;
+  height: 1.3rem;
+  flex: none;
+  border: 2px solid var(--ink);
+  background: var(--card);
+}
+
+[data-kind="experiment"] > .mark {
+  border-style: dashed;
+  border-radius: 50%;
+  background: transparent;
+}
+[data-kind="company"] > .mark {
+  background: var(--red);
+  border-radius: 5px;
+  rotate: 10deg;
+  box-shadow: inset 0 0 0 3px var(--red), inset 0 0 0 6px oklch(100% 0 0);
+}
+[data-kind="launch"] > .mark {
+  background: var(--sky);
+  clip-path: polygon(0 0, 100% 25%, 0 55%);
+  border: 0;
+}
+[data-kind="milestone"] > .mark {
+  background: var(--marker);
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  border: 0;
+}
+
+// ---- the winding timeline -------------------------------------------------------
+
+.timeline {
+  list-style: none;
+  position: relative;
+  display: grid;
+  gap: var(--space-5);
+
+  @media (min-width: 900px) {
+    gap: var(--space-2);
+  }
+
+  li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.4rem 1fr;
+    gap: var(--space-3);
+
+    @media (min-width: 900px) {
+      grid-template-columns: 1fr 3rem 1fr;
+    }
+
+    // the pen line between entries, drawn as each one arrives
+    &::before {
+      content: "";
+      position: absolute;
+      left: 1.15rem;
+      top: 1.6rem;
+      bottom: calc(var(--space-5) * -1);
+      width: 3px;
+      background: repeating-linear-gradient(180deg, var(--ink-2) 0 7px, transparent 7px 12px);
+      transform-origin: top;
+      scale: 1 0;
+      transition: scale 0.9s var(--ease-pen) 0.2s;
+
+      @media (min-width: 900px) {
+        left: calc(50% - 1.5px);
+        bottom: calc(var(--space-2) * -1);
+      }
+    }
+
+    &:last-child::before {
+      display: none;
+    }
+  }
+
+  :global(.is-in)::before {
+    scale: 1 1;
+  }
+
+  :global(html:not(.js)) & li::before {
+    scale: 1 1;
+  }
+
+  .mark {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    margin-top: 0.35rem;
+    width: 1.6rem;
+    height: 1.6rem;
+    position: relative;
+    z-index: 1;
+
+    @media (min-width: 900px) {
+      grid-column: 2;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline li::before {
+    scale: 1 1;
+  }
+}
+
+.entry {
+  grid-column: 2;
+  grid-row: 1;
+  padding: var(--space-4) var(--space-5);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 6px 12px 8px 14px;
+  box-shadow: 3px 4px 0 oklch(21.54% 0.009 75.14 / 0.18);
+
+  h3 {
+    font-size: var(--step-1);
+    margin-top: 0.1rem;
+  }
+
+  p {
+    margin-top: var(--space-2);
+    font-size: 0.97rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .timeline li:nth-child(odd) .entry {
+    grid-column: 1;
+    rotate: -0.6deg;
+  }
+  .timeline li:nth-child(even) .entry {
+    grid-column: 3;
+    rotate: 0.5deg;
+  }
+}
+
+[data-kind="experiment"] .entry {
+  border-style: dashed;
+  background: transparent;
+}
+
+[data-kind="company"] .entry {
+  border-color: var(--red);
+  box-shadow: 4px 5px 0 var(--red);
+}
+
+.year {
+  font-family: var(--font-hand);
+  font-size: var(--step-2);
+  line-height: 1;
+  color: var(--red-ink);
+  margin: 0 !important;
+}
+
+.source {
+  font-size: 0.82rem !important;
+  color: var(--ink-muted);
+}
+
+// ---- people ----------------------------------------------------------------------
+
+.people {
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1.2fr 1fr;
+  }
+
+  h2 {
+    margin-top: var(--space-3);
+  }
+}
+
+.quote {
+  margin: var(--space-6) 0 0;
+  padding-left: var(--space-5);
+  border-left: 4px solid var(--red);
+
+  p {
+    font-family: var(--font-hand);
+    font-size: var(--step-2);
+    line-height: 1.3;
+  }
+
+  footer {
+    margin-top: var(--space-2);
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+  }
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+  margin-top: var(--space-6);
+}
+
+.smallHead {
+  font-size: var(--step-2);
+}

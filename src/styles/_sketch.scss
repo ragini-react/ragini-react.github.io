@@ -1,0 +1,214 @@
+// Sketchbook typography + marks. Hand font is for short notes only.
+
+.hand {
+  font-family: var(--font-hand);
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.25;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-hand);
+  font-size: var(--step-1);
+  color: var(--red-ink);
+  line-height: 1.2;
+  transform: rotate(-1.5deg);
+  transform-origin: left center;
+}
+
+.lede {
+  font-size: var(--step-1);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 38rem;
+}
+
+.muted {
+  color: var(--ink-muted);
+}
+
+// Marker highlight that sweeps in when its section is revealed
+.mark {
+  background-image: linear-gradient(100deg, transparent 0.2em, var(--marker-soft) 0.25em, var(--marker-soft) calc(100% - 0.2em), transparent calc(100% - 0.1em));
+  background-repeat: no-repeat;
+  background-size: 100% 0.62em;
+  background-position: 0 88%;
+  padding-inline: 0.06em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+html.js [data-reveal] .mark,
+html.js .mark[data-reveal] {
+  background-size: 0% 0.62em;
+  transition: background-size 0.9s var(--ease-pen) 0.35s;
+}
+html.js .is-in .mark,
+html.js .mark.is-in {
+  background-size: 100% 0.62em;
+}
+
+// Strike-through thought: "crossed out" idea
+.strike {
+  position: relative;
+  color: var(--ink-muted);
+  white-space: nowrap;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: -0.1em;
+    right: -0.1em;
+    top: 52%;
+    height: 0.12em;
+    background: var(--red);
+    border-radius: 2px;
+    transform: rotate(-2.5deg);
+  }
+}
+
+// A piece of tape holding something to the page
+.tape {
+  position: absolute;
+  width: 5.5rem;
+  height: 1.6rem;
+  background: var(--tape);
+  box-shadow: 0 1px 2px oklch(0% 0 0 / 0.08);
+  clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 96%, 0 50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+// Taped card: a slightly rotated paper note
+.note-card {
+  position: relative;
+  background: var(--card);
+  border: var(--stroke) solid var(--ink);
+  border-radius: var(--radius-blob);
+  padding: var(--space-5);
+  box-shadow: var(--shadow-offset);
+}
+
+// Generic buttons
+.btn {
+  --btn-bg: var(--ink);
+  --btn-fg: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55em;
+  min-height: 48px;
+  padding: 0.7em 1.35em;
+  border: var(--stroke) solid var(--ink);
+  border-radius: 999px 960px 999px 940px / 940px 999px 960px 999px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-weight: 650;
+  font-size: var(--step-0);
+  text-decoration: none;
+  line-height: 1.1;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition:
+    transform var(--dur-1) var(--ease-out),
+    box-shadow var(--dur-1) var(--ease-out),
+    background-color var(--dur-2);
+
+  &:hover {
+    transform: translate(-1px, -2px) rotate(-0.6deg);
+    box-shadow: 5px 5px 0 var(--ink);
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--ink);
+  }
+
+  &[disabled],
+  &[aria-disabled="true"] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  svg {
+    width: 1.1em;
+    height: 1.1em;
+    flex: none;
+  }
+}
+
+.btn-red {
+  --btn-bg: var(--red-btn);
+  --btn-fg: var(--on-red);
+}
+
+.btn-ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+}
+
+.btn-paper {
+  --btn-bg: var(--card);
+  --btn-fg: var(--ink);
+}
+
+// Inline arrow link with a pen underline that grows on hover
+.pen-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-weight: 650;
+  text-decoration: none;
+  background-image: linear-gradient(var(--red), var(--red));
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--dur-2) var(--ease-out);
+  padding-bottom: 2px;
+
+  &:hover {
+    background-size: 100% 2px;
+  }
+
+  &::after {
+    content: "→";
+    transition: transform var(--dur-2) var(--ease-out);
+  }
+  &:hover::after {
+    transform: translateX(3px);
+  }
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.18em 0.7em;
+  border: 1.5px solid currentColor;
+  border-radius: 999px;
+  font-size: var(--step--1);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+// Section heading block
+.section-head {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 46rem;
+  margin-bottom: var(--space-7);
+}
+
+// Small "illustration" caption used to separate drawings from real events
+.concept-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--font-hand);
+  font-size: var(--step--1);
+  color: var(--ink-muted);
+}

@@ -1,0 +1,47 @@
+.wrap {
+  width: 100%;
+  max-width: calc(var(--max) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.wrap-text {
+  max-width: calc(var(--max-text) + var(--gutter) * 2);
+}
+
+.section {
+  padding-block: var(--section);
+  position: relative;
+}
+
+.section-tight {
+  padding-block: calc(var(--section) * 0.6);
+}
+
+// A sheet laid on the desk: slightly darker paper with a torn top edge
+.sheet {
+  background: var(--paper-2);
+  position: relative;
+}
+
+.ruled {
+  --margin-x: max(6px, calc((100% - var(--max)) / 2 - 1.5rem));
+  background-image:
+    linear-gradient(90deg, transparent var(--margin-x), var(--margin) var(--margin-x), var(--margin) calc(var(--margin-x) + 2px), transparent calc(var(--margin-x) + 2px)),
+    repeating-linear-gradient(180deg, transparent 0 31px, var(--rule) 31px 32px);
+}
+
+.grid-paper {
+  background-image:
+    linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.stack > * + * {
+  margin-top: var(--space, var(--space-4));
+}
+
+main {
+  display: block;
+}

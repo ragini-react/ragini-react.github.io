@@ -1,0 +1,70 @@
+name: Build and deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Rebuild every night so open roles (and their JobPosting data) stay current.
+  schedule:
+    - cron: "30 0 * * *" # 06:00 IST
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - run: npm ci
+
+      - name: Type check, lint, unit tests
+        run: |
+          npm run typecheck
+          npm run lint
+          npm test
+
+      # `npm run build` runs scripts/fetch-jobs.mjs first (prebuild).
+      - name: Build static site
+        run: npm run build
+        env:
+          BASE_PATH: ${{ vars.PAGES_BASE_PATH || steps.pages.outputs.base_path }}
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://walkover.in' }}
+          NEXT_PUBLIC_NOINDEX: ${{ vars.NEXT_PUBLIC_NOINDEX }}
+          NEXT_PUBLIC_CONTACT_ENDPOINT: ${{ vars.NEXT_PUBLIC_CONTACT_ENDPOINT }}
+          NEXT_PUBLIC_NEWSLETTER_ENDPOINT: ${{ vars.NEXT_PUBLIC_NEWSLETTER_ENDPOINT }}
+          NEXT_PUBLIC_MAILCHIMP_URL: ${{ vars.NEXT_PUBLIC_MAILCHIMP_URL }}
+
+      - name: Check internal links
+        run: node scripts/check-links.mjs --internal-only
+        env:
+          BASE_PATH: ${{ vars.PAGES_BASE_PATH || steps.pages.outputs.base_path }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

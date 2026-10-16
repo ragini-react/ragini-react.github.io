@@ -1,0 +1,132 @@
+// ------------------------------------------------------------------
+// Design tokens: "A Living Sketchbook"
+// Paper, ink, pencil, marker. Dark mode is a night sketchbook:
+// charcoal paper with chalk ink. Chosen only by the OS preference.
+// ------------------------------------------------------------------
+
+:root {
+  color-scheme: light dark;
+
+  // Surfaces
+  --paper: oklch(96.23% 0.0143 84.58);
+  --paper-2: oklch(92.99% 0.023 84.59);
+  --paper-3: oklch(89.71% 0.0289 84.59);
+  --card: oklch(99.42% 0.0069 88.64);
+  --tape: oklch(88.13% 0.0974 90.84 / 0.72);
+
+  // Ink
+  --ink: oklch(21.54% 0.009 75.14);
+  --ink-2: oklch(35.12% 0.0137 76.41);
+  --ink-muted: oklch(45.67% 0.0183 76.91); // 6.4:1 on --paper
+  --pencil: oklch(66.07% 0.0216 77.24); // decorative strokes only
+  --rule: oklch(51.88% 0.1114 259.41 / 0.16);
+  --margin: oklch(57.58% 0.2009 28.92 / 0.28);
+
+  // Walkover accents
+  --red: oklch(58.55% 0.2231 29.08); // logo red, used for marks and fills
+  --red-ink: oklch(49.94% 0.1938 29.15); // red text on paper, 5.9:1
+  --red-btn: oklch(54.18% 0.2069 29.06); // button fill under white text, 5.4:1
+  --marker: oklch(89.16% 0.1569 92.99);
+  --marker-soft: oklch(89.16% 0.1569 92.99 / 0.55);
+  --sky: oklch(48.45% 0.1141 256.48);
+  --leaf: oklch(47.31% 0.0956 153.87);
+
+  --focus: oklch(51.51% 0.1882 260.75);
+  --on-red: oklch(100% 0 0);
+
+  // Shadows: pencil-hatched, never glow
+  --shadow-1: 0 1px 0 oklch(21.54% 0.009 75.14 / 0.08), 0 2px 6px oklch(21.54% 0.009 75.14 / 0.06);
+  --shadow-2: 0 2px 0 oklch(21.54% 0.009 75.14 / 0.1), 0 10px 26px -10px oklch(21.54% 0.009 75.14 / 0.24);
+  --shadow-offset: 4px 4px 0 var(--ink);
+
+  // Type
+  --font-display: var(--ff-display), "Avenir Next", system-ui, sans-serif;
+  --font-body: var(--ff-body), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-hand: var(--ff-hand), "Bradley Hand", "Comic Sans MS", cursive;
+
+  --step--1: clamp(0.84rem, 0.82rem + 0.1vw, 0.9rem);
+  --step-0: clamp(1rem, 0.97rem + 0.15vw, 1.08rem);
+  --step-1: clamp(1.18rem, 1.1rem + 0.35vw, 1.35rem);
+  --step-2: clamp(1.42rem, 1.26rem + 0.75vw, 1.85rem);
+  --step-3: clamp(1.75rem, 1.45rem + 1.4vw, 2.6rem);
+  --step-4: clamp(2.2rem, 1.65rem + 2.6vw, 3.8rem);
+  --step-5: clamp(2.8rem, 1.8rem + 4.6vw, 5.8rem);
+  --step-6: clamp(3.4rem, 1.8rem + 7.4vw, 8.4rem);
+
+  // Space
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+  --section: clamp(4.5rem, 3rem + 7vw, 9rem);
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --max: 76rem;
+  --max-text: 40rem;
+
+  // Shape
+  --radius-1: 6px;
+  --radius-2: 12px;
+  --radius-3: 22px;
+  --radius-blob: 255px 15px 225px 15px / 15px 225px 15px 255px; // hand-cut paper
+  --stroke: 2px;
+  --stroke-bold: 3px;
+
+  // Layers
+  --z-base: 1;
+  --z-raised: 10;
+  --z-header: 100;
+  --z-menu: 110;
+  --z-intro: 1000;
+
+  // Motion
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-pen: cubic-bezier(0.55, 0.05, 0.25, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --dur-1: 140ms;
+  --dur-2: 260ms;
+  --dur-3: 520ms;
+  --dur-4: 900ms;
+  --dur-draw: 1400ms;
+}
+
+@mixin dark-tokens {
+  --paper: oklch(19.24% 0.0067 78.15);
+  --paper-2: oklch(22.41% 0.0089 75.16);
+  --paper-3: oklch(27.06% 0.0138 81.67);
+  --card: oklch(23.23% 0.0104 80.59);
+  --tape: oklch(74.03% 0.1012 89.62 / 0.42);
+
+  --ink: oklch(93.87% 0.0201 84.59);
+  --ink-2: oklch(85.12% 0.0239 82.11);
+  --ink-muted: oklch(72.89% 0.0266 81.09); // 7.7:1 on --paper
+  --pencil: oklch(51.76% 0.021 78.11);
+  --rule: oklch(73.41% 0.0802 260.48 / 0.1);
+  --margin: oklch(71.36% 0.1797 27.98 / 0.22);
+
+  --red: oklch(63.01% 0.2219 28.71);
+  --red-ink: oklch(74.06% 0.1579 26.6); // 6.9:1 on --paper
+  --red-btn: oklch(52.62% 0.2004 29.09); // white text 5.7:1
+  --marker: oklch(83% 0.1493 92.78);
+  --marker-soft: oklch(83% 0.1493 92.78 / 0.28);
+  --sky: oklch(76.38% 0.0905 258.5);
+  --leaf: oklch(76.98% 0.0974 155.88);
+
+  --focus: oklch(78.05% 0.1114 261.06);
+  --on-red: oklch(100% 0 0);
+
+  --shadow-1: 0 1px 0 oklch(0% 0 0 / 0.4), 0 2px 8px oklch(0% 0 0 / 0.35);
+  --shadow-2: 0 2px 0 oklch(0% 0 0 / 0.45), 0 14px 30px -12px oklch(0% 0 0 / 0.7);
+  --shadow-offset: 4px 4px 0 oklch(0% 0 0);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include dark-tokens;
+  }
+}

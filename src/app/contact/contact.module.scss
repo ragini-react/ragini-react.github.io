@@ -1,0 +1,41 @@
+.grid {
+  display: grid;
+  gap: var(--space-7);
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.h {
+  font-size: var(--step-3);
+}
+
+.list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--space-3) var(--space-5);
+  margin-top: var(--space-5);
+
+  dt {
+    font-family: var(--font-hand);
+    font-size: 1.15rem;
+    color: var(--red-ink);
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  address {
+    font-style: normal;
+    margin-bottom: 0.3rem;
+  }
+}
+
+.support {
+  margin-top: var(--space-4);
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.45rem;
+}

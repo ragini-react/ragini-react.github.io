@@ -1,0 +1,134 @@
+.switch {
+  display: inline-flex;
+  gap: 0.25rem;
+  margin: 0 0 var(--space-6);
+  padding: 0.3rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--card);
+}
+
+.option {
+  position: relative;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+  }
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0.2rem 1rem;
+    border-radius: 999px;
+    font-weight: 650;
+  }
+
+  input:checked + span {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  input:focus-visible + span {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+}
+
+.cards {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(19rem, 100%), 1fr));
+  gap: var(--space-6) var(--space-5);
+}
+
+.card {
+  position: relative;
+  padding: var(--space-6) var(--space-5) var(--space-5);
+  background-color: var(--card);
+  background-image:
+    linear-gradient(var(--margin), var(--margin)),
+    repeating-linear-gradient(180deg, transparent 0 27px, var(--rule) 27px 28px);
+  background-size:
+    100% 2px,
+    100% 100%;
+  background-position:
+    0 2.9rem,
+    0 0;
+  background-repeat: no-repeat, repeat;
+  border: 2px solid var(--ink);
+  border-radius: 3px;
+  box-shadow: 4px 5px 0 oklch(21.54% 0.009 75.14 / 0.18);
+  transition: rotate var(--dur-3) var(--ease-spring), translate var(--dur-3) var(--ease-spring);
+
+  &:nth-child(3n + 1) {
+    rotate: -1deg;
+  }
+  &:nth-child(3n + 2) {
+    rotate: 0.7deg;
+    translate: 0 0.6rem;
+  }
+  &:nth-child(3n) {
+    rotate: -0.3deg;
+  }
+
+  &:hover {
+    rotate: 0deg;
+  }
+}
+
+.no {
+  position: absolute;
+  top: 0.55rem;
+  left: var(--space-5);
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--red-ink);
+}
+
+.doodle {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.9rem;
+  width: 2.6rem;
+  height: 2.6rem;
+
+  path {
+    fill: none;
+    stroke: var(--ink-muted);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.title {
+  margin-top: var(--space-4);
+  font-size: var(--step-2);
+}
+
+.en {
+  margin-top: var(--space-3);
+}
+
+.hi {
+  margin-top: var(--space-3);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+.cards[data-lang="en"] .hi,
+.cards[data-lang="hi"] .en {
+  display: none;
+}
+
+.cards[data-lang="both"] .hi {
+  padding-top: var(--space-3);
+  border-top: 1.5px dashed var(--pencil);
+}

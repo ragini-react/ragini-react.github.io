@@ -1,0 +1,105 @@
+.wrap {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.status {
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  color: var(--ink-muted);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  min-height: 44px;
+  padding: 0.3rem 1rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--card);
+  font-weight: 650;
+
+  &[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--paper);
+  }
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(19rem, 100%), 1fr));
+  gap: var(--space-5);
+}
+
+.role {
+  position: relative;
+  display: grid;
+  gap: 0.35rem;
+  height: 100%;
+  padding: var(--space-5) var(--space-6) var(--space-5) var(--space-5);
+  background: oklch(97.59% 0.0448 97.54);
+  color: oklch(21.54% 0.009 75.14);
+  border: 2px solid oklch(21.54% 0.009 75.14);
+  text-decoration: none;
+  box-shadow: 3px 4px 0 oklch(21.54% 0.009 75.14 / 0.25);
+  rotate: calc((var(--i) - 2) * 0.35deg);
+  transition:
+    rotate var(--dur-2) var(--ease-spring),
+    translate var(--dur-2) var(--ease-spring);
+
+  &:hover,
+  &:focus-visible {
+    rotate: 0deg;
+    translate: 0 -3px;
+  }
+}
+
+.list li:nth-child(3n + 2) .role {
+  background: oklch(94.9% 0.0269 241.15);
+}
+.list li:nth-child(3n) .role {
+  background: oklch(93.79% 0.0312 25.03);
+}
+
+.pin {
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  translate: -50% 0;
+  border-radius: 50%;
+  background: var(--red);
+  border: 2px solid oklch(21.54% 0.009 75.14);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-2);
+  line-height: 1.1;
+}
+
+.facts {
+  font-size: 0.92rem;
+  color: oklch(35.12% 0.0137 76.41);
+}
+
+.go {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.empty {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+}

@@ -1,0 +1,452 @@
+.intro {
+  --hx: 50vw;
+  --hy: 36vh;
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-intro);
+  display: none;
+  contain: strict;
+}
+
+// Only shown when the inline head script decided this visit should see it.
+:global(html[data-intro]) .intro {
+  display: block;
+}
+
+.sheet {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(ellipse at 50% 38%, transparent 40%, color-mix(in srgb, var(--paper-3) 70%, transparent) 100%),
+    linear-gradient(var(--rule) 1px, transparent 1px),
+    linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    32px 32px,
+    32px 32px;
+  animation: sheet-in 380ms var(--ease-out) both;
+  will-change: transform, opacity;
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0.6;
+  }
+}
+
+// The reveal flies through the die: the sheet zooms in around it and fades
+// away. Only transform and opacity change, so the compositor runs it at full
+// frame rate without repainting the screen.
+.intro[data-phase="open"] .sheet {
+  transform-origin: var(--hx) var(--hy);
+  animation: fly-through 700ms cubic-bezier(0.55, 0, 0.3, 1) forwards;
+}
+
+@keyframes fly-through {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
+}
+
+.intro[data-phase="fade"] {
+  animation: fade-out 300ms var(--ease-out) forwards;
+}
+
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+// Notebook margin line drawing down the page
+.margin {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  path {
+    fill: none;
+    stroke: var(--margin);
+    stroke-width: 0.25;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 3000;
+    animation: draw 900ms var(--ease-pen) 80ms forwards;
+  }
+}
+
+.scribble {
+  position: absolute;
+  left: clamp(1rem, 10vw, 9rem);
+  top: clamp(4rem, 14vh, 9rem);
+  width: clamp(150px, 20vw, 260px);
+  transform: rotate(-6deg);
+  pointer-events: none;
+  transition: opacity 500ms var(--ease-out);
+}
+
+.scribblePath {
+  fill: none;
+  stroke: var(--ink-muted);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 650ms var(--ease-pen) 150ms forwards;
+
+  & + & {
+    animation-delay: 700ms;
+    animation-duration: 260ms;
+  }
+}
+
+.scribbleText {
+  font-family: var(--font-hand);
+  font-size: 26px;
+  fill: var(--ink-muted);
+  opacity: 0;
+  animation: appear 300ms ease 380ms forwards;
+}
+
+.intro[data-phase="title"] .scribble,
+.intro[data-phase="open"] .scribble {
+  opacity: 0;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+
+// --- Title -------------------------------------------------------------
+
+.titleBlock {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(3.5rem, 15vh, 9rem);
+  translate: -50% 0;
+  display: grid;
+  justify-items: center;
+  gap: clamp(0.6rem, 2vh, 1.2rem);
+  width: min(92vw, 60rem);
+  text-align: center;
+}
+
+// The two lines share one grid cell and replace each other in turn.
+.lines {
+  display: grid;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 1.1rem + 6.4vw, 6.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+
+.line {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 0.25em;
+
+  > span {
+    display: inline-block;
+    opacity: 0;
+    translate: 0 0.5em;
+    rotate: 4deg;
+    will-change: opacity, translate, rotate;
+    transition:
+      opacity 460ms var(--ease-out),
+      translate 640ms var(--ease-spring),
+      rotate 640ms var(--ease-spring);
+    transition-delay: calc(var(--i) * 100ms + 120ms);
+  }
+
+  // The outgoing line lifts away gently while the next one is written in.
+  &[data-state="past"] > span {
+    translate: 0 -0.4em;
+    rotate: -2deg;
+    transition:
+      opacity 400ms var(--ease-out),
+      translate 560ms var(--ease-out),
+      rotate 560ms var(--ease-out);
+    transition-delay: calc(var(--i) * 50ms);
+  }
+}
+
+.accent {
+  position: relative;
+  color: var(--red-ink);
+
+  svg {
+    position: absolute;
+    left: -2%;
+    right: 0;
+    bottom: -0.16em;
+    width: 104%;
+    height: 0.24em;
+    overflow: visible;
+  }
+
+  path {
+    fill: none;
+    stroke: var(--red);
+    stroke-width: 7;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 3000;
+    stroke-dashoffset: 3000;
+    transition: stroke-dashoffset 600ms var(--ease-pen) 620ms;
+  }
+}
+
+.titleBlock[data-on] {
+  .line[data-state="on"] > span {
+    opacity: 1;
+    translate: 0 0;
+    rotate: 0deg;
+  }
+
+  .line[data-state="on"] path {
+    stroke-dashoffset: 0;
+  }
+}
+
+// --- Skip ---------------------------------------------------------------
+
+.skip {
+  position: absolute;
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 2rem);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  min-height: 44px;
+  padding: 0.5em 1em;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 2px 2px 0 var(--ink);
+
+  kbd {
+    font: inherit;
+    font-size: 0.75em;
+    padding: 0.1em 0.45em;
+    border: 1.5px solid var(--pencil);
+    border-radius: 4px;
+    color: var(--ink-muted);
+  }
+
+  &:hover {
+    background: var(--marker);
+    color: oklch(21.54% 0.009 75.14);
+  }
+}
+
+.intro[data-phase="open"] .skip,
+.intro[data-phase="fade"] .skip {
+  visibility: hidden;
+}
+
+// --- The rolling Walkover die ------------------------------------------
+
+.dieStage {
+  --s: clamp(130px, 26vmin, 230px);
+  position: absolute;
+  left: 50%;
+  top: 36%;
+  width: var(--s);
+  height: var(--s);
+  translate: -50% -50%;
+}
+
+.dieShadow {
+  position: absolute;
+  left: 50%;
+  top: 92%;
+  width: calc(var(--s) * 1.2);
+  height: calc(var(--s) * 0.24);
+  translate: -50% -30%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, oklch(19.93% 0.0175 58.41 / 0.3), transparent);
+  opacity: 0;
+}
+
+.dieBounce {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.die {
+  will-change: transform, translate, rotate, scale;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+// The die eases in, lands with two soft hops, then keeps drifting gently
+// until the page opens, so the moment never freezes on a still frame.
+// It starts from first paint, so it never waits for the page's JavaScript.
+.dieStage {
+  .dieBounce {
+    opacity: 1;
+    animation: die-bounce 1300ms linear 200ms both;
+  }
+  .die {
+    animation:
+      die-roll 1300ms cubic-bezier(0.25, 0.8, 0.3, 1) 200ms both,
+      die-idle 1700ms cubic-bezier(0.45, 0, 0.55, 1) 1500ms infinite alternate;
+  }
+  .dieShadow {
+    animation:
+      die-shadow 1300ms ease-out 200ms both,
+      shadow-idle 1700ms cubic-bezier(0.45, 0, 0.55, 1) 1500ms infinite alternate;
+  }
+}
+
+.dieStage[data-still] {
+  .dieBounce,
+  .dieShadow {
+    opacity: 1;
+    animation: none;
+  }
+  .die {
+    animation: none;
+  }
+}
+
+@keyframes die-bounce {
+  0% {
+    opacity: 0;
+    transform: translate3d(-34vw, -46vh, 0);
+    animation-timing-function: cubic-bezier(0.45, 0, 0.9, 0.6);
+  }
+  12% {
+    opacity: 1;
+  }
+  52% {
+    transform: translate3d(-4vw, 0, 0);
+    animation-timing-function: cubic-bezier(0.2, 0.6, 0.45, 1);
+  }
+  70% {
+    transform: translate3d(-1.4vw, -5vh, 0);
+    animation-timing-function: cubic-bezier(0.55, 0, 0.8, 0.5);
+  }
+  84% {
+    transform: translate3d(-0.3vw, 0, 0);
+    animation-timing-function: cubic-bezier(0.2, 0.6, 0.45, 1);
+  }
+  92% {
+    transform: translate3d(0, -1vh, 0);
+    animation-timing-function: cubic-bezier(0.55, 0, 0.6, 1);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes die-roll {
+  from {
+    transform: rotate(-380deg) scale(0.6);
+  }
+  to {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+// Uses the individual translate/rotate/scale properties, so it layers on top
+// of the finished roll transform instead of replacing it.
+@keyframes die-idle {
+  from {
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+  to {
+    translate: 0 -14px;
+    rotate: 6deg;
+    scale: 1.05;
+  }
+}
+
+@keyframes die-shadow {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  52%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shadow-idle {
+  to {
+    scale: 0.85;
+    opacity: 0.7;
+  }
+}
+
+// A slow "camera" push-in from the landing to the reveal, so the frame keeps
+// moving the whole time and flows straight into the opening through the die.
+.intro[data-phase="title"],
+.intro[data-phase="open"] {
+  .dieStage,
+  .titleBlock {
+    animation: dolly 3000ms cubic-bezier(0.45, 0, 0.4, 1) forwards;
+  }
+}
+
+@keyframes dolly {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 1.1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro[data-phase="open"] {
+    animation: fade-out 300ms linear forwards;
+  }
+  .intro .dieStage,
+  .intro .titleBlock,
+  .intro .dieStage * {
+    animation: none !important;
+  }
+  .intro .dieBounce,
+  .intro .dieShadow {
+    opacity: 1;
+  }
+}

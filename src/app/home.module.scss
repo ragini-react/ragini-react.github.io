@@ -1,0 +1,435 @@
+// ---- Hero -------------------------------------------------------------------
+
+.hero {
+  padding-top: clamp(2rem, 1rem + 4vw, 4.5rem);
+  padding-bottom: var(--space-7);
+}
+
+.heroGrid {
+  display: grid;
+  gap: var(--space-5);
+  align-items: end;
+
+  @media (min-width: 860px) {
+    grid-template-columns: 1.6fr 0.7fr;
+  }
+}
+
+.heroTitle {
+  margin-top: var(--space-3);
+  font-size: clamp(3rem, 1.6rem + 5.6vw, 6.4rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.heroText :global(.lede) {
+  margin-top: var(--space-5);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-4);
+  align-items: center;
+  margin-top: var(--space-6);
+}
+
+.heroCast {
+  display: none;
+  position: relative;
+  justify-self: end;
+  width: min(15rem, 100%);
+
+  @media (min-width: 860px) {
+    display: block;
+  }
+}
+
+.heroWalker {
+  width: 62%;
+  margin-left: auto;
+
+  [data-part="arm-b"] {
+    rotate: -150deg;
+    animation: wave 0.6s ease-in-out 1s 4 alternate;
+  }
+}
+
+:global(html[data-intro]) .heroWalker * {
+  animation-play-state: paused !important;
+}
+
+@keyframes wave {
+  from {
+    rotate: -160deg;
+  }
+  to {
+    rotate: -130deg;
+  }
+}
+
+.heroNote {
+  position: absolute;
+  left: -30%;
+  top: -12%;
+  width: 82%;
+  overflow: visible;
+  rotate: -5deg;
+
+  text {
+    font-family: var(--font-hand);
+    font-size: 22px;
+    fill: var(--ink-muted);
+  }
+  path {
+    fill: none;
+    stroke: var(--ink-muted);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+  }
+}
+
+.bunting {
+  margin-top: var(--space-6);
+}
+
+.buntingHint {
+  margin-top: var(--space-4);
+  text-align: center;
+  color: var(--ink-muted);
+  font-size: 1rem;
+}
+
+// ---- Meet ------------------------------------------------------------------
+
+.spread {
+  display: grid;
+  gap: var(--space-6);
+  position: relative;
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+
+    // the sketchbook's spine
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(var(--pencil) 50%, transparent 0) 0 0 / 2px 12px;
+    }
+  }
+}
+
+.pageLeft,
+.pageRight {
+  @media (min-width: 900px) {
+    padding-inline: var(--space-7);
+  }
+
+  h2 {
+    margin-top: var(--space-3);
+  }
+}
+
+.pageLeft {
+  @media (min-width: 900px) {
+    padding-left: 0;
+  }
+}
+
+.facts {
+  list-style: none;
+  display: grid;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+
+  li {
+    position: relative;
+    padding-left: 2rem;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.45em;
+      width: 1.1rem;
+      height: 1.1rem;
+      border: 2px solid var(--red);
+      border-radius: 45% 55% 50% 50%;
+      rotate: -8deg;
+    }
+  }
+}
+
+.pageRight {
+  display: grid;
+  align-content: center;
+  gap: var(--space-5);
+}
+
+.bigQuote {
+  margin: 0;
+
+  p {
+    font-family: var(--font-display);
+    font-size: var(--step-4);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  footer {
+    margin-top: var(--space-4);
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+  }
+}
+
+// ---- Ideas ------------------------------------------------------------------
+
+.freedomStrip {
+  display: grid;
+  gap: var(--space-5);
+  align-items: center;
+  margin-top: var(--space-7);
+  padding: var(--space-5) var(--space-6);
+  border: 2px dashed var(--ink-muted);
+  border-radius: 20px 14px 24px 16px;
+
+  @media (min-width: 860px) {
+    grid-template-columns: 1.6fr auto;
+  }
+
+  blockquote {
+    margin: 0;
+
+    p {
+      font-family: var(--font-hand);
+      font-size: var(--step-2);
+      line-height: 1.25;
+    }
+
+    footer {
+      margin-top: var(--space-2);
+      font-size: 0.88rem;
+      color: var(--ink-muted);
+    }
+  }
+}
+
+.freedomLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+// ---- Stories -----------------------------------------------------------------
+
+.storyBits {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+
+  li {
+    position: relative;
+    padding: var(--space-5);
+    background: var(--card);
+    border: 2px solid var(--ink);
+    border-radius: 4px 8px 6px 10px;
+    box-shadow: 4px 5px 0 oklch(21.54% 0.009 75.14 / 0.2);
+
+    &:nth-child(1) {
+      rotate: -1deg;
+    }
+    &:nth-child(2) {
+      rotate: 0.8deg;
+    }
+    &:nth-child(3) {
+      rotate: -0.4deg;
+    }
+  }
+
+  h3 {
+    margin-top: var(--space-2);
+    font-size: var(--step-1);
+  }
+
+  p {
+    margin-top: var(--space-2);
+    font-size: 0.95rem;
+    color: var(--ink-2);
+  }
+}
+
+.storyYear {
+  font-family: var(--font-hand);
+  font-size: var(--step-2);
+  color: var(--red-ink);
+}
+
+.more {
+  margin-top: var(--space-6);
+}
+
+// ---- Life -------------------------------------------------------------------
+
+.lifeGrid {
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
+
+  @media (min-width: 900px) {
+    grid-template-columns: 1fr 1.05fr;
+  }
+}
+
+.values {
+  list-style: none;
+  display: grid;
+  gap: var(--space-3);
+
+  li {
+    display: grid;
+    gap: 0.1rem;
+    padding: var(--space-3) var(--space-4);
+    background: var(--marker-soft);
+    border-left: 4px solid var(--red);
+    border-radius: 2px 10px 10px 2px;
+
+    &:nth-child(2) {
+      margin-left: var(--space-5);
+    }
+  }
+
+  strong {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+  }
+
+  span {
+    font-size: 0.92rem;
+    color: var(--ink-2);
+  }
+}
+
+.photos {
+  padding: var(--space-4);
+}
+
+// ---- Journal -----------------------------------------------------------------
+
+.postList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+
+  a {
+    display: grid;
+    gap: 0.35rem;
+    height: 100%;
+    padding: var(--space-4) var(--space-5);
+    border-top: 3px solid var(--ink);
+    text-decoration: none;
+    transition: background-color var(--dur-2);
+
+    &:hover {
+      background: var(--card);
+    }
+  }
+}
+
+.postTopic {
+  font-family: var(--font-hand);
+  color: var(--red-ink);
+}
+
+.postTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-1);
+  line-height: 1.2;
+}
+
+.postMeta {
+  font-size: 0.86rem;
+  color: var(--ink-muted);
+}
+
+// ---- Newsletter ----------------------------------------------------------------
+
+.news {
+  background-color: var(--paper-2);
+}
+
+// ---- End -----------------------------------------------------------------------
+
+.doors {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-5);
+}
+
+.door {
+  display: grid;
+  gap: var(--space-2);
+  height: 100%;
+  padding: var(--space-5);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 14px 18px 12px 20px;
+  box-shadow: 4px 4px 0 var(--ink);
+  text-decoration: none;
+  transition:
+    translate var(--dur-2) var(--ease-spring),
+    box-shadow var(--dur-2);
+
+  &:hover {
+    translate: -2px -4px;
+    box-shadow: 7px 8px 0 var(--red);
+  }
+}
+
+// A die face with the door's number of pips
+.pip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 6px;
+  align-content: center;
+  justify-content: center;
+  background: var(--red);
+  border: 2px solid var(--ink);
+  border-radius: 9px;
+  rotate: -6deg;
+
+  i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: oklch(100% 0 0);
+  }
+}
+
+.doorTitle {
+  margin-top: var(--space-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-2);
+}
+
+.doorDesc {
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+}

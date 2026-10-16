@@ -1,0 +1,57 @@
+.pile {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr));
+  gap: var(--space-5);
+}
+
+.env {
+  position: relative;
+  display: grid;
+  gap: 0.4rem;
+  min-height: 9rem;
+  padding: var(--space-5) var(--space-5) var(--space-4);
+  background:
+    linear-gradient(160deg, transparent 49.5%, oklch(21.54% 0.009 75.14 / 0.12) 50%, transparent 51%) top left / 50% 3.4rem no-repeat,
+    linear-gradient(200deg, transparent 49.5%, oklch(21.54% 0.009 75.14 / 0.12) 50%, transparent 51%) top right / 50% 3.4rem no-repeat,
+    oklch(99.42% 0.0069 88.64);
+  color: oklch(21.54% 0.009 75.14);
+  border: 2px solid oklch(21.54% 0.009 75.14);
+  border-radius: 4px;
+  text-decoration: none;
+  rotate: var(--r);
+  box-shadow: 3px 4px 0 oklch(21.54% 0.009 75.14 / 0.2);
+  transition: rotate var(--dur-3) var(--ease-spring), translate var(--dur-3) var(--ease-spring);
+
+  &:hover,
+  &:focus-visible {
+    rotate: 0deg;
+    translate: 0 -4px;
+  }
+}
+
+.stamp {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.7rem;
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.6rem;
+  background: var(--marker);
+  border: 2px dashed oklch(21.54% 0.009 75.14);
+  font-size: 1.2rem;
+}
+
+.subject {
+  margin-top: 1.6rem;
+  padding-right: 2.6rem;
+  font-family: var(--font-hand);
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.from {
+  font-size: 0.8rem;
+  color: oklch(45.67% 0.0183 76.91);
+}

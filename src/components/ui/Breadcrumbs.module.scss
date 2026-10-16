@@ -1,0 +1,24 @@
+.crumbs {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+
+  ol {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+  }
+
+  li + li::before {
+    content: "↝";
+    margin-right: 0.35rem;
+    color: var(--pencil);
+  }
+
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

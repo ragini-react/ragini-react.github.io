@@ -1,0 +1,178 @@
+{
+  "fetchedAt": "2026-10-16T11:25:24.996Z",
+  "source": "https://walkover.keka.com/careers/api/jobs/default/active",
+  "jobs": [
+    {
+      "id": 142538,
+      "slug": "project-manager-142538",
+      "title": "Project Manager",
+      "department": "Product Management",
+      "experience": "+3",
+      "locations": [],
+      "fullTime": true,
+      "publishedOn": "2026-09-22T11:39:34.057Z",
+      "skills": [
+        "problem solving",
+        "Communication"
+      ],
+      "descriptionHtml": "<h3>About the Role</h3><div>Walkover is looking for a <strong>Project Manager</strong> to manage project planning, execution, team coordination, and timely delivery. The ideal candidate should have strong communication, organizational, and problem-solving skills.</div><h3>Key Responsibilities</h3><ul><li>Plan and manage projects from start to completion.</li><li>Work in accordance with timelines, priorities, milestones, and deliverables.</li><li>Coordinate with cross-functional teams and stakeholders.</li><li>Track work progress and ensure timely delivery.</li><li>Identify and resolve project risks, issues, and dependencies.</li><li>Conduct regular follow-ups and provide project status updates.</li><li>Manage priorities and ensure smooth team coordination.</li><li>Take ownership of project outcomes and deliverables.</li></ul><h3>Requirements</h3><ul><li>3+ years of experience in Project Management.</li><li>Strong communication and stakeholder management skills.</li><li>Good planning, execution, and organizational abilities.</li><li>Strong problem-solving and decision-making skills.</li><li>Ability to manage multiple projects and deadlines.</li><li>Proactive approach with a strong sense of ownership.</li></ul>",
+      "applyUrl": "https://walkover.keka.com/careers/jobdetails/142538"
+    },
+    {
+      "id": 117086,
+      "slug": "technical-support-executive-117086",
+      "title": "Technical Support Executive",
+      "department": "Support",
+      "experience": "1-2",
+      "locations": [
+        {
+          "city": "Indore",
+          "region": "MP",
+          "country": "IN"
+        }
+      ],
+      "fullTime": true,
+      "publishedOn": "2026-07-27T13:35:56.44Z",
+      "skills": [
+        "technical",
+        "problem solving",
+        "customer support",
+        "Communication"
+      ],
+      "descriptionHtml": "<div>Responsibilities</div><ul><li>Working in the team of Technical Support Associates and performing well.</li><li>Research and identify solutions to software and Saas Product queries.</li><li>Diagnose and troubleshoot technical issues, including account setup and network configuration and onboarding.</li><li>Ask customers targeted questions to quickly understand the root of the problem.</li><li>Talk clients through a series of actions, either via phone, email, meet or chat, until they’ve solved a technical/non-technical query.</li><li>Properly escalate unresolved issues to appropriate internal teams (e.g. software developers).</li><li>Provide support to client for product &amp; API related queries.</li><li>Analysation of the Bug in product based on customer concern.</li><li>Ensure all issues are properly logged.</li><li>Prioritize and manage several open queries at one time.</li><li>Prepare accurate and timely reports for yourself and team.</li><li>Document technical knowledge in the form of notes and manuals.</li><li>Maintain jovial relationships with clients.</li><li>Utilize AI tools for quicker troubleshooting, automation, summarization, and process efficiency.</li></ul><div>Qualifications</div><ul><li>1-2 years of proven experience in the field of technical support.</li><li>Ability to diagnose and troubleshoot basic technical queries.</li><li>Excellent problem-solving and communication skills.</li><li>Ability to provide step-by-step technical help, both written and verbal.</li><li>Understanding of how API works.</li><li>Hands-on experience with AI tools (e.g., AI chatbots, AI troubleshooting assistants, automation tools, or AI-based documentation assistants).</li><li>Willingness to work in rotational shifts.</li></ul><div>  Benefits</div><ul><li>Flexible Work hours.</li><li>Flat Organization Structure.</li><li>Contribute to the growth of the product.</li></ul>",
+      "applyUrl": "https://walkover.keka.com/careers/jobdetails/117086"
+    },
+    {
+      "id": 134702,
+      "slug": "freeswitch-developer-134702",
+      "title": "FreeSwitch Developer",
+      "department": "Development",
+      "experience": "1-3",
+      "locations": [
+        {
+          "city": "Indore",
+          "region": "MP",
+          "country": "IN"
+        }
+      ],
+      "fullTime": true,
+      "publishedOn": "2026-07-14T07:37:01.567Z",
+      "skills": [
+        "asterisk",
+        "VoIP"
+      ],
+      "descriptionHtml": "<div>🔹 Role Overview:</div><div>You will be responsible for developing, customizing, and maintaining VoIP-based solutions</div><div>using FreeSWITCH, ensuring high availability, performance, and reliability of real-time</div><div>communication systems.</div><div>🔹 Key Responsibilities:</div><div>• Develop and maintain VoIP applications using FreeSWITCH</div><div>• Design and implement call routing, IVR, and dialplan logic</div><div>• Integrate FreeSWITCH with backend systems and APIs</div><div>• Work with SIP, RTP, and WebRTC protocols</div><div>• Troubleshoot and resolve call quality and performance issues</div><div>• Optimize system performance for scalability and low latency</div><div>• Collaborate with cross-functional teams for product enhancements</div><div>🔹 Required Skills:</div><div>• Strong experience with FreeSWITCH architecture and modules</div><div>• Good understanding of SIP, RTP, WebRTC, and VoIP fundamentals</div><div>• Experience in Lua / C / JavaScript (any one or more)</div><div>• Knowledge of Linux environments and networking concepts</div><div>• Hands-on experience with call flows, IVR, and conferencing systems</div><div>• Experience with debugging tools like sngrep, Wireshark</div><div>🔹 Good to Have:</div><div>• Experience with CPaaS or telecom platforms</div><div>• Knowledge of Kamailio / Asterisk</div><div>• Exposure to cloud infrastructure (AWS/GCP)</div><div>• Understanding of scalable distributed systems</div>",
+      "applyUrl": "https://walkover.keka.com/careers/jobdetails/134702"
+    },
+    {
+      "id": 133855,
+      "slug": "java-developer-133855",
+      "title": "Java Developer",
+      "department": "Development",
+      "experience": "4 +",
+      "locations": [
+        {
+          "city": "Indore",
+          "region": "MP",
+          "country": "IN"
+        }
+      ],
+      "fullTime": true,
+      "publishedOn": "2026-07-06T08:01:00.293Z",
+      "skills": [
+        "spring",
+        "java"
+      ],
+      "descriptionHtml": "<h3><strong>About the Role</strong></h3><div>We are looking for a passionate <strong>Java Developer</strong> to join our team. The ideal candidate should have a strong understanding of core Java concepts, object-oriented programming, and basic experience in developing or maintaining Java-based applications.</div><h3><strong>Key Responsibilities</strong></h3><div>Write clean, efficient, and maintainable code in Java.</div><div>Assist in designing, developing, and testing Java-based applications.</div><div>Collaborate with cross-functional teams to define and deliver features.</div><div>Debug and troubleshoot issues in existing code.</div><div>Learn and adapt to new technologies as required.</div><h3><strong>Required Skills</strong></h3><div>Solid understanding of <strong>Core Java</strong>, OOPs concepts, and data structures.</div><div>Basic knowledge of <strong>Spring / Spring Boot</strong>, <strong>JDBC</strong>, or <strong>Hibernate</strong> is a plus.</div><div>Familiarity with <strong>SQL</strong> and relational databases.</div><div>Strong analytical and problem-solving skills.</div><div>Good communication and teamwork abilities.</div><h3><strong>Preferred Qualifications</strong></h3><div>B.Tech/M.Tech in Computer Science or related field from <strong>IIT</strong> or other <strong>top-tier engineering colleges</strong>.</div><div>Internship or project experience in Java development.</div>",
+      "applyUrl": "https://walkover.keka.com/careers/jobdetails/133855"
+    },
+    {
+      "id": 123714,
+      "slug": "sales-executive-123714",
+      "title": "Sales Executive",
+      "department": "Sales",
+      "experience": "1-4",
+      "locations": [
+        {
+          "city": "Indore",
+          "region": "MP",
+          "country": "IN"
+        }
+      ],
+      "fullTime": true,
+      "publishedOn": "2026-03-25T08:30:41.41Z",
+      "skills": [],
+      "descriptionHtml": "<div>We are looking for a driven and enthusiastic individual to join our team as a Sales Executive. This role is ideal for someone who enjoys interacting with people, understands customer needs, and is motivated to build meaningful business relationships. You will play a key role in driving revenue growth by converting leads, nurturing client relationships, and contributing to a seamless customer experience. If you are proactive, eager to learn, and excited about working in a fast-paced environment, this role offers strong growth and learning opportunities.</div><div>Key Responsibilities:-</div><div>● Handle sales inquiries via phone, email, or chat in a timely and</div><div>professional manner.</div><div>● Understand customer needs and requirements to effectively promote products or</div><div>services.</div><div>● Educate customers on the features, benefits, and pricing of our offerings.</div><div>● Use persuasive selling techniques to convert leads into sales.</div><div>● Maintain accurate records of interactions with customers in the CRM system.</div><div>● Collaborate with other departments, such as marketing and customer support, to</div><div>provide a seamless customer experience.</div><div>● Meet or exceed monthly sales targets and key performance indicators (KPIs).</div><div>● Continuously improve product knowledge and sales skills through training and</div><div>self-learning initiatives.</div><div>● Handle objections and resolve customer complaints in a diplomatic and</div><div>empathetic manner.</div><div>● Stay updated on industry trends, competitor offerings, and market dynamics to</div><div>adapt sales strategies accordingly.</div><div>Qualifications:-</div><div>● Bachelor’s degree in business, marketing, or a related field preferred.</div><div>● 6 months+ experience in SaaS sales.</div><div>● Must have strong communication and interpersonal skills.</div><div>● Ability to actively listen to customer needs and tailor solutions accordingly.</div><div>● Basic understanding of sales principles and techniques.</div><div>● Excellent time management and organizational skills.</div><div>● Proactive and self-motivated with a positive attitude.</div><div>● Ability to work effectively both independently and as part of a team.</div><div>● Proficiency in using CRM software and other sales tools are preferred.</div><div>● Willingness to work flexible hours, including evenings and weekends if required.</div><div>● No prior experience required, but a willingness to learn and grow in a</div><div>sales-oriented role is essential.</div><div>Benefits:-</div><div>● In-house product development with a chance to try hands on research and</div><div>development.</div><div>● New technology, chance to execute your ideas, Working on future products.</div><div>● Ample opportunity to learn and grow.</div><div>● Attractive employee benefits and amazing work culture.</div>",
+      "applyUrl": "https://walkover.keka.com/careers/jobdetails/123714"
+    },
+    {
+      "id": 116765,
+      "slug": "php-developer-116765",
+      "title": "PHP Developer",
+      "department": "Software Development",
+      "experience": "2 years or more",
+      "locations": [
+        {
+          "city": "Indore",
+          "region": "MP",
+          "country": "IN"
+        }
+      ],
+      "fullTime": true,
+      "publishedOn": "2026-01-14T10:16:08.387Z",
+      "skills": [
+        "agile",
+        "restapi",
+        "php",
+        "ORM's"
+      ],
+      "descriptionHtml": "<div>We are looking for a skilled PHP Developer to join our engineering team and help build scalable, high-performance applications. If you are passionate about programming and eager to work in a collaborative environment, we encourage you to apply. You will work across the full development lifecycle—design, development, testing, deployment—and collaborate with cross-functional teams to deliver reliable software solutions. Join us in pushing the boundaries of technology while delivering exceptional software solutions.</div><div>Responsibilities</div><ul><li>Develop, test, and maintain high-quality PHP applications.</li><li>Design and implement RESTful APIs and integrate with third-party services.</li><li>Collaborate with frontend teams and integrate user-facing features with server-side logic.</li><li>Participate in Agile processes (sprint planning, reviews, retrospectives).</li><li>Write clean, maintainable code and follow best practices, including code reviews and TDD/CI.</li><li>Troubleshoot, debug, and optimize application performance.</li><li>Work with relational and NoSQL databases (MySQL, SQL, MongoDB).</li><li>Assist with cloud-based deployments (AWS preferred).</li></ul><div>Requirements</div><ul><li>2+ years of experience in PHP development.</li><li>Strong knowledge of PHP frameworks.</li><li>Good understanding of design patterns, server-side logic, and software engineering practices.</li><li>Experience with REST APIs, ORMs (SQLAlchemy), and version control (Git).</li><li>Familiarity with Agile methodologies.</li><li>Comfortable working in Linux environments.</li><li>Strong problem-solving skills and attention to detail.</li></ul><div>Good to Have</div><ul><li>Experience with Redis and MongoDB (NoSQL).</li><li>Familiarity with message queues like RabbitMQ.</li><li>Exposure to AWS / GCP, Nginx, and server configuration.</li><li>Understanding of Microservices architecture.</li><li>Experience with high-traffic or scalable systems.</li></ul><div>Benefits</div><ul><li>Work on in-house product development and R&amp;D projects.</li><li>Opportunity to explore new technologies and build future-focused products.</li><li>Strong learning and growth environment.</li></ul>",
+      "applyUrl": "https://walkover.keka.com/careers/jobdetails/116765"
+    },
+    {
+      "id": 110726,
+      "slug": "python-developer-110726",
+      "title": "Python Developer",
+      "department": "Software Development",
+      "experience": "2-5",
+      "locations": [
+        {
+          "city": "Indore",
+          "region": null,
+          "country": "IN"
+        }
+      ],
+      "fullTime": true,
+      "publishedOn": "2025-11-27T07:28:06.983Z",
+      "skills": [
+        "python",
+        "flask"
+      ],
+      "descriptionHtml": "<div>We are looking for a skilled Python Developer to join our engineering team and help build scalable, high-performance applications. If you are passionate about programming and eager to work in a collaborative environment, we encourage you to apply. You will work across the full development lifecycle—design, development, testing, deployment—and collaborate with cross-functional teams to deliver reliable software solutions. Join us in pushing the boundaries of technology while delivering exceptional software solutions.</div><div>Responsibilities</div><ul><li>Develop, test, and maintain high-quality Python applications.</li><li>Design and implement RESTful APIs and integrate with third-party services.</li><li>Collaborate with frontend teams and integrate user-facing features with server-side logic.</li><li>Participate in Agile processes (sprint planning, reviews, retrospectives).</li><li>Write clean, maintainable code and follow best practices, including code reviews and TDD/CI.</li><li>Troubleshoot, debug, and optimize application performance.</li><li>Work with relational and NoSQL databases (MySQL, SQL, MongoDB).</li><li>Assist with cloud-based deployments (AWS preferred).</li></ul><div>Requirements</div><ul><li>2+ years of experience in Python development.</li><li>Strong knowledge of Python frameworks (Django, Flask, FastAPI, etc.).</li><li>Good understanding of design patterns, server-side logic, and software engineering </li></ul><div>            practices.</div><ul><li>Experience with REST APIs, ORMs (SQLAlchemy), and version control (Git).</li><li>Familiarity with Agile methodologies.</li><li>Comfortable working in Linux environments.</li><li>Strong problem-solving skills and attention to detail. </li></ul><div>Good to Have</div><div>•\tExperience with Celery, Redis, DRF.</div><div>•\tExposure to pandas, NumPy, scikit-learn.</div><div>•\tKnowledge of AWS/Azure and basic networking concepts.</div><div>•\tUnderstanding of frontend basics (JavaScript/React).</div><div>Benefits</div><div>•\tWork on in-house product development and R&amp;D projects.</div><div>•\tOpportunity to explore new technologies and build future-focused products.</div><div>•\tStrong learning and growth environment.</div>",
+      "applyUrl": "https://walkover.keka.com/careers/jobdetails/110726"
+    },
+    {
+      "id": 110757,
+      "slug": "quality-assurance-engineer-110757",
+      "title": "Quality Assurance Engineer",
+      "department": "Software Testing",
+      "experience": "2-4",
+      "locations": [
+        {
+          "city": "Indore",
+          "region": null,
+          "country": "IN"
+        }
+      ],
+      "fullTime": true,
+      "publishedOn": "2025-11-27T06:28:28.74Z",
+      "skills": [
+        "agile",
+        "testing",
+        "clickup"
+      ],
+      "descriptionHtml": "<div><strong>Responsibilities</strong></div><ul><li>Plan, design, and execute <strong>functional, regression, and integration</strong> test cases.</li><li>Test <strong>REST APIs</strong>, backend logic, SQL queries, and data flow across microservices.</li><li>Perform <strong>cross-browser</strong> and <strong>mobile</strong> testing for UI/UX validation.</li><li>Identify, log, and track defects using standard defect-tracking tools with clear documentation.</li><li>Collaborate with developers and product teams to ensure high-quality releases.</li><li>Validate <strong>production hotfixes</strong>, conduct sanity checks, and maintain QA documentation.</li><li>Stay updated with modern QA practices, especially <strong>AI-driven testing workflows</strong>.</li></ul><div><strong>Requirements</strong></div><ul><li>Experience in an <strong>Agile/Scrum</strong> environment.</li><li>Strong skills in <strong>Manual Testing</strong> (functional, regression, system testing).</li><li>Hands-on experience with <strong>API Testing</strong> using Postman / REST APIs.</li><li>Good knowledge of <strong>SQL</strong> and database validation.</li><li>Experience with <strong>cross-browser</strong> and <strong>mobile app/browser</strong> testing.</li><li>Proficiency with <strong>defect tracking</strong> tools (preferably ClickUp).</li><li>Strong <strong>analytical and debugging</strong> abilities.</li><li>Ability to leverage <strong>AI-based testing tools</strong> for improving testing efficiency.</li></ul><div><strong>Benefits</strong></div><ul><li><strong>Flexible working hours</strong>.</li><li><strong>Flat organizational structure</strong> with strong ownership opportunities.</li><li>Opportunity to contribute directly to <strong>product growth</strong>.</li><li><strong>Health benefits</strong> and ongoing skill-development support.</li></ul>",
+      "applyUrl": "https://walkover.keka.com/careers/jobdetails/110757"
+    }
+  ]
+}

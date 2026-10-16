@@ -1,0 +1,435 @@
+// Timeline (s): 0.2 shared · 1.4 hand-off · 1.9 questioned · 3.2 hand-off
+// 3.7 connected · 5.0 hand-off · 5.5 built (v1) · 7.0 v2
+
+.scene {
+  margin: 0;
+  container-type: inline-size;
+}
+
+.stage {
+  --h: 40cqw;
+  --floor: 37cqw;
+  --floor2: 37cqw;
+  --aw: 10cqw;
+  // station positions (left, floor)
+  --s0x: 4cqw;
+  --s1x: 30cqw;
+  --s2x: 56cqw;
+  --s3x: 84cqw;
+  --s0y: var(--floor);
+  --s1y: var(--floor);
+  --s2y: var(--floor);
+  --s3y: var(--floor);
+  // idea positions (centre)
+  --i0x: 17cqw;
+  --i1x: 41cqw;
+  --i2x: 67cqw;
+  --i3x: 82cqw;
+  --iy0: 9cqw;
+  --iy1: 9cqw;
+  --iy2: 9cqw;
+  --iy3: 9cqw;
+  --idea: 14cqw;
+  position: relative;
+  height: var(--h);
+  overflow: hidden;
+}
+
+@container (max-width: 640px) {
+  .stage {
+    --h: 132cqw;
+    --floor: 60cqw;
+    --floor2: 126cqw;
+    --aw: 21cqw;
+    --s0x: 4cqw;
+    --s1x: 58cqw;
+    --s2x: 58cqw;
+    --s3x: 8cqw;
+    --s2y: var(--floor2);
+    --s3y: var(--floor2);
+    --i0x: 30cqw;
+    --i1x: 70cqw;
+    --i2x: 64cqw;
+    --i3x: 40cqw;
+    --iy0: 12cqw;
+    --iy1: 12cqw;
+    --iy2: 78cqw;
+    --iy3: 78cqw;
+    --idea: 34cqw;
+  }
+}
+
+.floor {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: calc(var(--floor) - 1.5cqw);
+  height: 3cqw;
+
+  path {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 2.5;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+.floor2 {
+  display: none;
+  top: calc(var(--floor2) - 1.5cqw);
+}
+
+@container (max-width: 640px) {
+  .floor2 {
+    display: block;
+  }
+}
+
+// ---- actors --------------------------------------------------------------
+
+.actor {
+  position: absolute;
+  width: var(--aw);
+  left: var(--x);
+  top: calc(var(--y) - var(--aw) * 1.857 + 0.3cqw);
+
+  &[data-n="0"] {
+    --x: var(--s0x);
+    --y: var(--s0y);
+  }
+  &[data-n="1"] {
+    --x: var(--s1x);
+    --y: var(--s1y);
+  }
+  &[data-n="2"] {
+    --x: var(--s2x);
+    --y: var(--s2y);
+  }
+  &[data-n="3"] {
+    --x: var(--s3x);
+    --y: var(--s3y);
+  }
+
+  [data-part="arm-a"] {
+    animation: receive 1.2s var(--ease-in-out) var(--at) both;
+  }
+  [data-part="head"] {
+    animation: perk 0.6s var(--ease-spring) var(--at);
+  }
+  [data-part="eyes"] {
+    animation: blink 5s steps(1) 8s infinite;
+  }
+  [data-primary] {
+    animation: hide 0.01s linear var(--at) forwards;
+  }
+  [data-expr]:not([data-primary]) {
+    animation: show 0.01s linear var(--at) forwards;
+  }
+}
+
+// The builder hammers: forearm taps three times, then grins at v2
+.actor[data-n="3"] {
+  [data-part="forearm-a"] {
+    animation: tap 0.22s ease-in-out 5.6s 6 alternate;
+  }
+  [data-expr="focus"] {
+    animation:
+      show 0.01s linear 5.5s forwards,
+      hide 0.01s linear 7s forwards;
+  }
+  [data-expr="grin"] {
+    opacity: 0;
+    animation: show 0.01s linear 7s forwards;
+  }
+}
+
+@keyframes receive {
+  0% {
+    rotate: 0deg;
+  }
+  30%,
+  70% {
+    rotate: -120deg;
+  }
+  100% {
+    rotate: -40deg;
+  }
+}
+@keyframes perk {
+  50% {
+    rotate: -8deg;
+    translate: 0 -2px;
+  }
+}
+@keyframes tap {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 40deg;
+  }
+}
+@keyframes blink {
+  0%,
+  96% {
+    scale: 1 1;
+  }
+  97% {
+    scale: 1 0.1;
+  }
+}
+@keyframes hide {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes show {
+  to {
+    opacity: 1;
+  }
+}
+
+// ---- hand-off arrows ------------------------------------------------------
+
+.arrow {
+  position: absolute;
+  width: 14cqw;
+  overflow: visible;
+
+  path {
+    fill: none;
+    stroke: var(--red);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    animation: pen 0.5s var(--ease-pen) var(--t) both;
+  }
+  path + path {
+    animation-delay: calc(var(--t) + 0.4s);
+    animation-duration: 0.15s;
+  }
+
+  &[data-n="0"] {
+    --t: 1.4s;
+    left: 22cqw;
+    top: 2cqw;
+  }
+  &[data-n="1"] {
+    --t: 3.2s;
+    left: 48cqw;
+    top: 2cqw;
+  }
+  &[data-n="2"] {
+    --t: 5s;
+    left: 72cqw;
+    top: 2cqw;
+  }
+}
+
+@container (max-width: 640px) {
+  .arrow {
+    width: 30cqw;
+
+    &[data-n="0"] {
+      left: 36cqw;
+      top: 2cqw;
+    }
+    &[data-n="1"] {
+      left: 74cqw;
+      top: 62cqw;
+      rotate: 100deg;
+    }
+    &[data-n="2"] {
+      left: 30cqw;
+      top: 66cqw;
+      scale: -1 1;
+    }
+  }
+}
+
+@keyframes pen {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+// ---- the idea -----------------------------------------------------------------
+
+.idea {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--idea);
+  margin-left: calc(var(--idea) / -2);
+  translate: var(--i3x) var(--iy3);
+  animation: relay 5.6s var(--ease-in-out) 0.2s both;
+
+  svg {
+    width: 100%;
+    overflow: visible;
+  }
+
+  path,
+  rect {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  text {
+    font-family: var(--font-hand);
+    font-size: 26px;
+    font-weight: 700;
+    fill: var(--red-ink);
+  }
+}
+
+@keyframes relay {
+  0% {
+    translate: var(--i0x) var(--iy0);
+    scale: 0;
+  }
+  6% {
+    scale: 1;
+    translate: var(--i0x) var(--iy0);
+  }
+  21% {
+    translate: var(--i0x) var(--iy0);
+  }
+  30% {
+    translate: var(--i1x) var(--iy1);
+  }
+  53% {
+    translate: var(--i1x) var(--iy1);
+  }
+  62% {
+    translate: var(--i2x) var(--iy2);
+  }
+  85% {
+    translate: var(--i2x) var(--iy2);
+  }
+  94%,
+  100% {
+    translate: var(--i3x) var(--iy3);
+    scale: 1;
+  }
+}
+
+.v0,
+.v1,
+.v2,
+.v3 {
+  opacity: 0;
+}
+
+.v0 {
+  animation: stage-window 1.9s linear 0.2s both;
+}
+.v1 {
+  animation: stage-window 1.8s linear 1.9s both;
+}
+.v2 {
+  animation: stage-window 1.8s linear 3.7s both;
+}
+.v3 {
+  animation: show 0.01s linear 5.5s both;
+}
+
+@keyframes stage-window {
+  0%,
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.cross {
+  stroke: var(--red) !important;
+}
+
+.link {
+  stroke: var(--red) !important;
+  stroke-dasharray: 4 5;
+}
+
+.side {
+  fill: var(--marker) !important;
+}
+
+.box {
+  fill: var(--card) !important;
+  animation: built 0.5s var(--ease-spring) 5.5s both;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.screen {
+  fill: color-mix(in srgb, var(--sky) 18%, transparent) !important;
+}
+
+@keyframes built {
+  from {
+    scale: 0.6;
+  }
+}
+
+.ver {
+  animation: hide 0.01s linear 7s forwards;
+}
+.ver2 {
+  opacity: 0;
+  animation: show 0.01s linear 7s forwards;
+}
+
+// ---- steps ------------------------------------------------------------------
+
+.steps {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  counter-reset: step;
+
+  li {
+    counter-increment: step;
+    display: grid;
+    gap: 0.15rem;
+    padding-left: 2.6rem;
+    position: relative;
+
+    &::before {
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: grid;
+      place-items: center;
+      width: 2rem;
+      height: 2rem;
+      border: 2px solid var(--ink);
+      border-radius: 48% 52% 46% 54%;
+      font-family: var(--font-hand);
+      font-weight: 700;
+    }
+  }
+}
+
+.stepVerb {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--step-1);
+}
+
+.stepLine {
+  color: var(--ink-muted);
+  font-size: 0.95rem;
+}

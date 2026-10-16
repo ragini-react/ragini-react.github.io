@@ -1,0 +1,354 @@
+.wrap {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+
+  @media (min-width: 860px) {
+    grid-template-columns: 0.9fr 1.1fr;
+  }
+}
+
+// ---- scene: reacts to data-mood (idle · typing · ready · error · done) ----
+
+.scene {
+  position: relative;
+  aspect-ratio: 1 / 0.9;
+  max-width: 30rem;
+  width: 100%;
+  margin-inline: auto;
+}
+
+.actor {
+  position: absolute;
+  left: 30%;
+  bottom: 2%;
+  width: 34%;
+
+  [data-part="eyes"] {
+    animation: blink 4s steps(1) infinite;
+  }
+  [data-part="head"] {
+    transition: rotate var(--dur-3) var(--ease-spring);
+  }
+  [data-part="arm-a"] {
+    transition: rotate var(--dur-3) var(--ease-spring);
+  }
+  [data-expr] {
+    transition: opacity var(--dur-1);
+  }
+}
+
+@keyframes blink {
+  0%,
+  95% {
+    scale: 1 1;
+  }
+  96% {
+    scale: 1 0.1;
+  }
+}
+
+// typing: looks over at the form, eyebrows up
+.wrap[data-mood="typing"] .actor {
+  [data-part="head"] {
+    rotate: 8deg;
+  }
+  [data-primary] {
+    opacity: 0 !important;
+  }
+  [data-expr="wow"] {
+    opacity: 1 !important;
+  }
+}
+
+// ready: grins and lifts the envelope
+.wrap[data-mood="ready"] .actor {
+  [data-part="head"] {
+    rotate: 5deg;
+  }
+  [data-part="arm-a"] {
+    rotate: -70deg;
+  }
+  [data-primary] {
+    opacity: 0 !important;
+  }
+  [data-expr="grin"] {
+    opacity: 1 !important;
+  }
+}
+
+// error: a thoughtful frown, no drama
+.wrap[data-mood="error"] .actor {
+  [data-part="head"] {
+    rotate: -5deg;
+  }
+  [data-primary] {
+    opacity: 0 !important;
+  }
+  [data-expr="think"] {
+    opacity: 1 !important;
+  }
+}
+
+// done: the envelope has flown; a wave and a grin
+.wrap[data-mood="done"] .actor {
+  [data-part="arm-a"] {
+    animation: wave 0.5s ease-in-out 0.3s 3 alternate;
+    rotate: -150deg;
+  }
+  [data-part="prop-envelope"] {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  [data-primary] {
+    opacity: 0 !important;
+  }
+  [data-expr="grin"] {
+    opacity: 1 !important;
+  }
+}
+
+@keyframes wave {
+  from {
+    rotate: -165deg;
+  }
+  to {
+    rotate: -135deg;
+  }
+}
+
+.sun {
+  position: absolute;
+  right: 6%;
+  top: 4%;
+  width: 22%;
+  animation: turn 24s linear infinite;
+
+  circle {
+    fill: var(--marker);
+    stroke: var(--ink);
+    stroke-width: 3;
+  }
+  path {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+}
+
+.sunFace {
+  stroke-width: 2.5 !important;
+}
+
+@keyframes turn {
+  to {
+    rotate: 360deg;
+  }
+}
+
+.thought {
+  position: absolute;
+  left: 4%;
+  top: 10%;
+  width: 46%;
+  animation: drift 5s ease-in-out infinite alternate;
+
+  path {
+    fill: var(--card);
+    stroke: var(--ink);
+    stroke-width: 2.5;
+  }
+  text {
+    font-family: var(--font-hand);
+    font-size: 15px;
+    fill: var(--ink);
+  }
+}
+
+@keyframes drift {
+  to {
+    translate: 6px -6px;
+    rotate: 2deg;
+  }
+}
+
+.plane {
+  position: absolute;
+  left: 38%;
+  top: 30%;
+  width: 40%;
+  opacity: 0;
+  overflow: visible;
+
+  .trail {
+    fill: none;
+    stroke: var(--ink-muted);
+    stroke-width: 2;
+    stroke-dasharray: 5 6;
+  }
+  .planeBody {
+    fill: var(--card);
+    stroke: var(--ink);
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+  }
+}
+
+.wrap[data-mood="done"] .plane {
+  animation: fly-off 1.4s var(--ease-in-out) both;
+}
+
+@keyframes fly-off {
+  0% {
+    opacity: 1;
+    translate: -30% 60%;
+    scale: 0.5;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 60% -90%;
+    scale: 1;
+  }
+}
+
+.cheer {
+  position: absolute;
+  left: 20%;
+  top: 22%;
+  width: 60%;
+  opacity: 0;
+
+  path {
+    fill: none;
+    stroke: var(--red);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  path + path {
+    fill: var(--marker);
+    stroke: var(--ink);
+    stroke-width: 2;
+  }
+}
+
+.wrap[data-mood="done"] .cheer {
+  animation: cheer 0.8s var(--ease-spring) 0.5s both;
+}
+
+@keyframes cheer {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+// ---- paper + form -------------------------------------------------------------
+
+.paper {
+  position: relative;
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  background-color: var(--card);
+  background-image: repeating-linear-gradient(180deg, transparent 0 31px, var(--rule) 31px 32px);
+  border: 2px solid var(--ink);
+  border-radius: 14px 22px 12px 26px;
+  box-shadow: 6px 6px 0 var(--ink);
+  rotate: 0.6deg;
+}
+
+.title {
+  margin-top: var(--space-3);
+  font-size: var(--step-3);
+}
+
+.copy {
+  margin-top: var(--space-4);
+  color: var(--ink-2);
+}
+
+.form {
+  margin-top: var(--space-5);
+}
+
+.label {
+  display: block;
+  font-weight: 650;
+  margin-bottom: var(--space-2);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+
+  input {
+    flex: 1 1 14rem;
+    min-height: 48px;
+    padding: 0.6rem 0.9rem;
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    background: var(--paper);
+    font-size: 1rem;
+
+    &[aria-invalid="true"] {
+      border-color: var(--red-ink);
+      box-shadow: 0 0 0 2px var(--red);
+    }
+  }
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin-top: var(--space-4);
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  input {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.15rem;
+    accent-color: var(--red);
+    flex: none;
+  }
+}
+
+.help {
+  margin-top: var(--space-3);
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+}
+
+.error {
+  margin-top: var(--space-2);
+  min-height: 1.2em;
+  font-weight: 600;
+  color: var(--red-ink);
+}
+
+.success,
+.pending {
+  margin-top: var(--space-5);
+  padding: var(--space-4);
+  border: 2px dashed var(--leaf);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--leaf) 10%, transparent);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.pending {
+  border-color: var(--sky);
+  background: color-mix(in srgb, var(--sky) 10%, transparent);
+}

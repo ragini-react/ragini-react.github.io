@@ -1,0 +1,96 @@
+// A comic strip: thick gutters, panels of slightly different sizes.
+.strip {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+  gap: var(--space-5);
+  padding: var(--space-5);
+  background: var(--ink);
+  border-radius: 6px;
+
+  @media (min-width: 1000px) {
+    grid-template-columns: repeat(6, 1fr);
+
+    .panel:nth-child(8n + 1) {
+      grid-column: span 3;
+    }
+    .panel:nth-child(8n + 2) {
+      grid-column: span 3;
+    }
+    .panel:nth-child(8n + 3) {
+      grid-column: span 2;
+    }
+    .panel:nth-child(8n + 4) {
+      grid-column: span 4;
+    }
+    .panel:nth-child(8n + 5) {
+      grid-column: span 4;
+    }
+    .panel:nth-child(8n + 6) {
+      grid-column: span 2;
+    }
+    .panel:nth-child(8n + 7) {
+      grid-column: span 3;
+    }
+    .panel:nth-child(8n + 0) {
+      grid-column: span 3;
+    }
+  }
+}
+
+.panel {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--card);
+  border-radius: 3px;
+
+  h3 {
+    font-size: var(--step-2);
+  }
+}
+
+.panelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.year {
+  display: inline-block;
+  padding: 0.05rem 0.6rem;
+  background: var(--marker);
+  color: oklch(21.54% 0.009 75.14);
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.15rem;
+  border: 2px solid oklch(21.54% 0.009 75.14);
+  rotate: -3deg;
+}
+
+.doodle {
+  width: 2.8rem;
+  height: 2.8rem;
+
+  path {
+    fill: none;
+    stroke: var(--ink-muted);
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.src {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+.more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+  margin-top: var(--space-7);
+}

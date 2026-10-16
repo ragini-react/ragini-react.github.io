@@ -1,0 +1,67 @@
+.facade,
+.frame {
+  display: block;
+  width: 100%;
+  border: 2px solid var(--ink);
+  border-radius: 14px 18px 12px 20px;
+  overflow: hidden;
+  background: var(--card);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.facade {
+  padding: 0;
+  text-align: left;
+  color: var(--ink);
+
+  &:hover .playBg {
+    fill: var(--red);
+  }
+}
+
+.screen {
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: var(--paper-3);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.scribble {
+  fill: none;
+  stroke: var(--pencil);
+  stroke-width: 2;
+}
+
+.playBg {
+  fill: var(--ink);
+  transition: fill var(--dur-2);
+}
+
+.play {
+  fill: var(--paper);
+}
+
+.label {
+  display: grid;
+  gap: 0.2rem;
+  padding: var(--space-4) var(--space-5);
+  border-top: 2px solid var(--ink);
+
+  small {
+    color: var(--ink-muted);
+  }
+}
+
+.frame {
+  aspect-ratio: 16 / 9;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+}

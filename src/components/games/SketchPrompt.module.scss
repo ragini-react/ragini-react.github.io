@@ -1,0 +1,81 @@
+.wrap {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.prompt {
+  font-family: var(--font-hand);
+  font-size: var(--step-2);
+  line-height: 1.25;
+
+  span {
+    color: var(--red-ink);
+    font-weight: 700;
+  }
+}
+
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.inks {
+  display: inline-flex;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ink {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border-radius: 50%;
+    background: var(--c);
+    border: 2px solid var(--ink);
+  }
+
+  &:has(input:checked)::before {
+    inset: 4px;
+    box-shadow: 0 0 0 3px var(--marker);
+  }
+
+  &:has(input:focus-visible) {
+    outline: 3px solid var(--focus);
+    border-radius: 50%;
+  }
+}
+
+.canvas {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 70vh;
+  border: 2.5px solid var(--ink);
+  border-radius: 10px;
+  background: oklch(99.42% 0.0069 88.64);
+  touch-action: none;
+  cursor: crosshair;
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.note {
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+}

@@ -1,0 +1,65 @@
+.head {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+  padding-block: var(--space-5) var(--space-6);
+  border-bottom: 2px dashed var(--pencil);
+}
+
+.title {
+  font-size: var(--step-5);
+}
+
+.facts {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+
+  li {
+    padding: 0.2rem 0.75rem;
+    border: 1.5px solid var(--ink-muted);
+    border-radius: 999px;
+    font-size: 0.92rem;
+  }
+}
+
+.body {
+  padding-top: var(--space-6);
+
+  h3 {
+    margin-top: var(--space-6);
+    font-size: var(--step-2);
+  }
+
+  ul,
+  ol {
+    padding-left: 1.3rem;
+    margin-top: var(--space-3);
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  div + div,
+  p + p {
+    margin-top: 0.6rem;
+  }
+}
+
+.skills {
+  margin-top: var(--space-6);
+}
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+  margin-top: var(--space-7);
+}
+
+.note {
+  margin-top: var(--space-5);
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}

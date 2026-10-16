@@ -1,0 +1,37 @@
+.polaroid {
+  position: relative;
+  margin: 0;
+  padding: 0.75rem 0.75rem 0.9rem;
+  background: oklch(99.42% 0.0069 88.64);
+  color: oklch(21.54% 0.009 75.14);
+  border-radius: 3px;
+  box-shadow:
+    0 1px 0 oklch(0% 0 0 / 0.08),
+    0 14px 30px -14px oklch(0% 0 0 / 0.45);
+  transition: rotate var(--dur-3) var(--ease-spring);
+
+  &:hover {
+    rotate: 0deg !important;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    background: oklch(91.45% 0.0202 84.59);
+  }
+
+  figcaption {
+    display: grid;
+    gap: 0.15rem;
+    padding-top: 0.65rem;
+
+    span {
+      font-size: 1.15rem;
+    }
+    small {
+      font-size: 0.78rem;
+      color: oklch(45.67% 0.0183 76.91);
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.walker {
+  --char-line: var(--ink);
+  display: block;
+  overflow: visible;
+  width: 100%;
+  height: auto;
+
+  [data-part] {
+    transform-box: view-box;
+  }
+}
+
+.line {
+  stroke: var(--char-line);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.lineThin {
+  stroke: var(--char-line);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.limbInk {
+  stroke: var(--char-line);
+  stroke-linecap: round;
+  fill: none;
+}

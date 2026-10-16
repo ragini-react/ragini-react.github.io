@@ -1,0 +1,898 @@
+// Product mechanisms. Colours come from the [data-brand] scope around them.
+// Every loop is long and gentle and pauses off-screen (see .scene in _motion).
+
+.figure {
+  margin: 0;
+}
+
+.svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+
+  text {
+    font-family: var(--font-hand);
+    fill: var(--ink);
+  }
+}
+
+.ink,
+.ink * {
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.ink path {
+  fill: none;
+}
+
+.inkLine {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.paperFill {
+  fill: var(--card);
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+.surfaceFill {
+  fill: var(--brand-paper);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.brandFill {
+  fill: var(--brand);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.mutedFill {
+  fill: var(--paper-3);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.noteFill {
+  fill: var(--marker);
+  stroke: oklch(21.54% 0.009 75.14);
+  stroke-width: 2;
+}
+.onBrand {
+  fill: none;
+  stroke: var(--brand-on);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.onBrandFill {
+  fill: var(--brand-on);
+}
+.hand {
+  font-size: 15px;
+}
+.tiny {
+  font-size: 11px;
+  font-family: var(--font-body) !important;
+  font-weight: 700;
+}
+
+.stamp {
+  rect {
+    fill: none;
+    stroke: var(--brand-text);
+    stroke-width: 3;
+  }
+  text {
+    fill: var(--brand-text) !important;
+    font-size: 17px;
+    font-weight: 700;
+  }
+  transform-box: fill-box;
+  transform-origin: center;
+  rotate: -6deg;
+}
+
+@keyframes pen {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+// ---- MSG91: a message hops across channels to a phone ------------------------
+
+.route {
+  fill: none;
+  stroke: var(--ink-muted);
+  stroke-width: 2;
+  stroke-dasharray: 6 7;
+}
+
+.stop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: stop-ping 7s ease-out infinite;
+  animation-delay: calc(0.5s + var(--i) * 0.7s);
+}
+
+@keyframes stop-ping {
+  0%,
+  6%,
+  100% {
+    scale: 1;
+  }
+  3% {
+    scale: 1.25;
+  }
+}
+
+.traveler {
+  offset-path: path("M82 130 C 130 60, 170 200, 220 130 S 300 70, 320 120");
+  offset-rotate: 0deg;
+  animation: travel 7s var(--ease-in-out) infinite;
+}
+
+@keyframes travel {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  55% {
+    offset-distance: 100%;
+    opacity: 1;
+  }
+  60%,
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+.otpLabel {
+  font-size: 12px;
+  fill: var(--ink-muted) !important;
+}
+
+.digit {
+  font-family: var(--font-body) !important;
+  font-weight: 800;
+  font-size: 12px;
+  fill: var(--brand-text) !important;
+  opacity: 0;
+  animation: digit 7s steps(1) infinite;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+
+@keyframes digit {
+  0%,
+  57% {
+    opacity: 0;
+  }
+  58%,
+  96% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.tick {
+  fill: none;
+  stroke: var(--leaf);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: tick 7s ease-out infinite;
+}
+
+@keyframes tick {
+  0%,
+  68% {
+    stroke-dashoffset: 40;
+  }
+  74%,
+  96% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 40;
+  }
+}
+
+// ---- viaSocket: cables run out to each app, then data pulses ------------------
+
+.cable {
+  fill: none;
+  stroke: var(--brand);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  animation: pen 0.7s var(--ease-pen) both;
+  animation-delay: calc(0.3s + var(--i) * 0.25s);
+}
+
+.pulse {
+  fill: none;
+  stroke: var(--brand-on);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 0.04 0.96;
+  animation: pulse 2.4s linear infinite;
+  animation-delay: calc(2s + var(--i) * 0.4s);
+  opacity: 0.9;
+}
+
+@keyframes pulse {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.tile {
+  animation: tile-in 0.4s var(--ease-spring) both;
+  animation-delay: calc(0.6s + var(--i) * 0.25s);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@keyframes tile-in {
+  from {
+    opacity: 0;
+    scale: 0.6;
+  }
+}
+
+// ---- Giddh: slips drop into both pans until the beam sits level ----------------
+
+.beam {
+  transform-origin: 200px 70px;
+  animation: balance 3.4s var(--ease-out) 0.4s both;
+}
+
+@keyframes balance {
+  0% {
+    rotate: 0deg;
+  }
+  20% {
+    rotate: -9deg;
+  }
+  45% {
+    rotate: 7deg;
+  }
+  65% {
+    rotate: -3deg;
+  }
+  82% {
+    rotate: 1.2deg;
+  }
+  100% {
+    rotate: 0deg;
+  }
+}
+
+.pan {
+  fill: var(--brand-paper);
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+
+.slip {
+  fill: var(--card);
+  stroke: var(--ink);
+  stroke-width: 2;
+  animation: slip-drop 0.5s var(--ease-out) both;
+  animation-delay: calc(0.3s + var(--i) * 0.42s);
+}
+
+.slipBank {
+  fill: var(--brand-paper);
+}
+
+@keyframes slip-drop {
+  from {
+    opacity: 0;
+    translate: 0 -70px;
+  }
+}
+
+.giddh .stamp {
+  opacity: 0;
+  animation: stamp 0.4s var(--ease-spring) 3.6s both;
+}
+
+@keyframes stamp {
+  from {
+    opacity: 0;
+    scale: 1.6;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+// ---- GTWY: agents pass the arch and keep to their own lane --------------------
+
+.arch {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 14;
+  stroke-linecap: round;
+}
+
+.archInner {
+  fill: none;
+  stroke: var(--b-acc);
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.lane {
+  fill: none;
+  stroke: var(--ink-muted);
+  stroke-width: 2;
+  stroke-dasharray: 4 6;
+}
+
+.houseFill {
+  fill: var(--brand-paper);
+  stroke: var(--ink);
+  stroke-width: 2.5;
+}
+
+.agent {
+  fill: var(--b-acc);
+  stroke: var(--ink);
+  stroke-width: 2;
+  animation: lane 4.5s var(--ease-in-out) infinite;
+
+  &[data-lane="0"] {
+    offset-path: path("M0 150 H 170 L 220 130 C 250 130, 260 66, 296 66");
+  }
+  &[data-lane="1"] {
+    offset-path: path("M0 150 H 170 L 220 150 C 250 150, 260 136, 296 136");
+    animation-delay: 1.5s;
+  }
+  &[data-lane="2"] {
+    offset-path: path("M0 150 H 170 L 220 170 C 250 170, 260 206, 296 206");
+    animation-delay: 3s;
+  }
+}
+
+@keyframes lane {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  80% {
+    offset-distance: 100%;
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+.cross {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 80;
+  animation: cross-out 4.5s ease infinite;
+}
+
+@keyframes cross-out {
+  0%,
+  30% {
+    stroke-dashoffset: 80;
+  }
+  40%,
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+// ---- Things of Brand: the drawer opens, one verified logo goes to the API ------
+
+.drawer {
+  animation: drawer 6s var(--ease-in-out) infinite;
+}
+
+@keyframes drawer {
+  0%,
+  8% {
+    translate: 0 0;
+  }
+  20%,
+  80% {
+    translate: 22px 0;
+  }
+  92%,
+  100% {
+    translate: 0 0;
+  }
+}
+
+.card {
+  translate: 115px 140px;
+  opacity: 0;
+  animation: fan 6s var(--ease-out) infinite;
+
+  &[data-n="0"] {
+    --tx: 80px;
+    --ty: 60px;
+    --r: -14deg;
+  }
+  &[data-n="1"] {
+    --tx: 140px;
+    --ty: 50px;
+    --r: 0deg;
+    animation-name: fan-pick;
+  }
+  &[data-n="2"] {
+    --tx: 200px;
+    --ty: 64px;
+    --r: 14deg;
+  }
+}
+
+@keyframes fan {
+  0%,
+  18% {
+    opacity: 0;
+    translate: 115px 140px;
+    rotate: 0deg;
+  }
+  30%,
+  82% {
+    opacity: 1;
+    translate: var(--tx) var(--ty);
+    rotate: var(--r);
+  }
+  94%,
+  100% {
+    opacity: 0;
+    translate: 115px 140px;
+  }
+}
+
+@keyframes fan-pick {
+  0%,
+  18% {
+    opacity: 0;
+    translate: 115px 140px;
+  }
+  30%,
+  42% {
+    opacity: 1;
+    translate: var(--tx) var(--ty);
+  }
+  62%,
+  82% {
+    opacity: 1;
+    translate: 290px 120px;
+    scale: 1.15;
+  }
+  94%,
+  100% {
+    opacity: 0;
+    translate: 290px 120px;
+  }
+}
+
+.verified {
+  translate: 306px 92px;
+  opacity: 0;
+  animation: verified 6s var(--ease-spring) infinite;
+}
+
+@keyframes verified {
+  0%,
+  44% {
+    opacity: 0;
+    scale: 0.3;
+  }
+  50%,
+  82% {
+    opacity: 1;
+    scale: 1;
+  }
+  94%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.api {
+  font-family: var(--font-body) !important;
+  font-weight: 800;
+  font-size: 18px;
+  fill: var(--brand-text) !important;
+}
+
+// ---- 50 Agents: one sentence, a crew of helpers --------------------------------
+
+.prompt {
+  font-family: var(--font-body) !important;
+  font-size: 14px;
+  clip-path: inset(0 100% 0 0);
+  animation: type-in 8s steps(30) infinite;
+}
+
+@keyframes type-in {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  25%,
+  96% {
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+.caret {
+  fill: var(--brand);
+  animation: caret 8s linear infinite;
+}
+
+@keyframes caret {
+  0% {
+    translate: 0 0;
+  }
+  25%,
+  100% {
+    translate: 238px 0;
+  }
+}
+
+.bot {
+  opacity: 0;
+  animation: run 8s var(--ease-in-out) infinite;
+
+  &[data-n="0"] {
+    --to-x: 70px;
+    --d: 0s;
+  }
+  &[data-n="1"] {
+    --to-x: 200px;
+    --d: 0.15s;
+  }
+  &[data-n="2"] {
+    --to-x: 330px;
+    --d: 0.3s;
+  }
+  &[data-n="3"] {
+    --to-x: 110px;
+    --d: 0.45s;
+  }
+  &[data-n="4"] {
+    --to-x: 290px;
+    --d: 0.6s;
+  }
+  animation-delay: var(--d);
+}
+
+@keyframes run {
+  0%,
+  28% {
+    opacity: 0;
+    translate: 200px 96px;
+  }
+  32% {
+    opacity: 1;
+    translate: 200px 96px;
+  }
+  50% {
+    translate: var(--to-x) 160px;
+  }
+  62% {
+    translate: var(--to-x) 156px;
+  }
+  78% {
+    opacity: 1;
+    translate: 200px 104px;
+  }
+  84%,
+  100% {
+    opacity: 0;
+    translate: 200px 104px;
+  }
+}
+
+.done {
+  fill: none;
+  stroke: var(--leaf);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: tick-50 8s ease infinite;
+  animation-delay: calc(var(--i) * 0.2s);
+}
+
+@keyframes tick-50 {
+  0%,
+  60% {
+    stroke-dashoffset: 40;
+  }
+  66%,
+  94% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 40;
+  }
+}
+
+// ---- DocStar: loose notes filed into one page -----------------------------------
+
+.loose {
+  translate: var(--x) var(--y);
+  rotate: var(--r);
+  animation: file 7s var(--ease-in-out) infinite;
+  animation-delay: calc(var(--i) * 0.3s);
+}
+
+@keyframes file {
+  0%,
+  10% {
+    opacity: 1;
+    translate: var(--x) var(--y);
+    rotate: var(--r);
+  }
+  40% {
+    opacity: 0;
+    translate: 290px 110px;
+    rotate: 0deg;
+    scale: 0.4;
+  }
+  41%,
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    translate: var(--x) var(--y);
+    rotate: var(--r);
+  }
+}
+
+.line {
+  fill: none;
+  stroke: var(--brand-text);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: doc-line 7s var(--ease-pen) infinite;
+  animation-delay: calc(var(--i) * 0.25s);
+}
+
+@keyframes doc-line {
+  0%,
+  35% {
+    stroke-dashoffset: 1;
+  }
+  52%,
+  92% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 1;
+  }
+}
+
+.sparkle {
+  fill: var(--marker);
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: sparkle 2.4s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+  50% {
+    scale: 1.35;
+    rotate: 45deg;
+  }
+}
+
+.docstar .stamp {
+  opacity: 0;
+  animation: doc-stamp 7s var(--ease-spring) infinite;
+}
+
+@keyframes doc-stamp {
+  0%,
+  62% {
+    opacity: 0;
+    scale: 1.6;
+  }
+  68%,
+  92% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// ---- Embarko: a prompt folds into a boat and docks at a live address ------------
+
+.water {
+  fill: none;
+  stroke: var(--sky);
+  stroke-width: 3;
+  stroke-linecap: round;
+  animation: waves 3s ease-in-out infinite alternate;
+}
+
+@keyframes waves {
+  to {
+    translate: -14px 0;
+  }
+}
+
+.sheetPaper {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: fold 7s var(--ease-in-out) infinite;
+}
+
+@keyframes fold {
+  0%,
+  15% {
+    opacity: 1;
+    scale: 1;
+  }
+  28%,
+  92% {
+    opacity: 0;
+    scale: 0.3 0.1;
+  }
+  100% {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.boat {
+  opacity: 0;
+  animation: sail 7s var(--ease-in-out) infinite;
+}
+
+@keyframes sail {
+  0%,
+  24% {
+    opacity: 0;
+    translate: 70px 196px;
+  }
+  30% {
+    opacity: 1;
+    translate: 70px 192px;
+    rotate: -4deg;
+  }
+  50% {
+    rotate: 4deg;
+  }
+  70%,
+  92% {
+    opacity: 1;
+    translate: 296px 192px;
+    rotate: 0deg;
+  }
+  100% {
+    opacity: 0;
+    translate: 296px 192px;
+  }
+}
+
+.sign {
+  opacity: 0;
+  animation: sign 7s var(--ease-spring) infinite;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+@keyframes sign {
+  0%,
+  66% {
+    opacity: 0;
+    scale: 0.6;
+  }
+  72%,
+  92% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.url {
+  font-family: var(--font-body) !important;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+// Reduced motion: each mechanism shows its finished state as a still drawing.
+@media (prefers-reduced-motion: reduce) {
+  .figure * {
+    animation: none !important;
+  }
+  .traveler {
+    offset-distance: 60%;
+  }
+  .digit,
+  .giddh .stamp,
+  .docstar .stamp,
+  .verified,
+  .sign,
+  .boat,
+  .card {
+    opacity: 1;
+  }
+  .tick,
+  .done,
+  .line {
+    stroke-dashoffset: 0;
+  }
+  .cable {
+    stroke-dashoffset: 0;
+  }
+  .pulse,
+  .bot,
+  .loose,
+  .sheetPaper {
+    opacity: 0;
+  }
+  .prompt {
+    clip-path: none;
+  }
+  .caret {
+    translate: 238px 0;
+  }
+  .card {
+    translate: var(--tx) var(--ty);
+    rotate: var(--r);
+  }
+  .card[data-n="1"] {
+    translate: 290px 120px;
+  }
+  .verified {
+    translate: 306px 92px;
+  }
+  .boat {
+    translate: 296px 192px;
+  }
+  .agent {
+    offset-distance: 60%;
+  }
+  .cross {
+    stroke-dashoffset: 0;
+  }
+}

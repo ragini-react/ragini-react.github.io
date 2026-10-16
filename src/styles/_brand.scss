@@ -1,0 +1,50 @@
+// Product colour scopes (see lib/brand.ts).
+// --brand        fills, marks and stripes
+// --brand-on     text on a --brand fill
+// --brand-text   brand-coloured text on the page surface
+// --brand-paper  the product's own light tint, used as a section surface
+// --brand-ink    text on --brand-paper
+
+[data-brand] {
+  --brand: var(--b);
+  --brand-on: var(--b-on);
+  --brand-text: var(--b);
+  --brand-paper: var(--b-surface);
+  --brand-ink: var(--b-ink);
+  --brand-btn: var(--b);
+  --brand-btn-on: var(--b-on);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-brand] {
+    --brand-text: var(--b-dark);
+    --brand-paper: var(--b-surface-dark);
+    --brand-ink: oklch(93.87% 0.0201 84.59);
+    // Dark-on-dark brands (GTWY, DocStar, Embarko) would vanish, so buttons
+    // switch to the lifted tint with dark text. Logos are never recoloured.
+    --brand-btn: var(--b-dark);
+    --brand-btn-on: oklch(17.84% 0.0026 67.66);
+  }
+}
+
+.btn-brand {
+  --btn-bg: var(--brand-btn);
+  --btn-fg: var(--brand-btn-on);
+}
+
+// Official logos always sit on a light "sticker", so monochrome marks stay
+// visible on the night sketchbook without recolouring them.
+.logo-sticker {
+  display: inline-grid;
+  place-items: center;
+  padding: 0.6rem 0.8rem;
+  background: oklch(99.42% 0.0069 88.64);
+  border-radius: 10px 14px 9px 12px;
+  box-shadow: 0 0 0 1.5px oklch(21.54% 0.009 75.14 / 0.85), 2px 3px 0 oklch(21.54% 0.009 75.14 / 0.85);
+
+  img {
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+}

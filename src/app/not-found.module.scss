@@ -1,0 +1,80 @@
+.grid {
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
+
+  @media (min-width: 860px) {
+    grid-template-columns: 1.3fr 1fr;
+  }
+}
+
+.title {
+  margin-top: var(--space-3);
+  font-size: var(--step-5);
+}
+
+.links {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.art {
+  position: relative;
+  max-width: 24rem;
+  margin-inline: auto;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.map {
+  position: absolute;
+  left: 0;
+  top: 8%;
+  width: 70%;
+  rotate: 180deg;
+  animation: turn 3s var(--ease-in-out) 1s infinite alternate;
+
+  path {
+    fill: var(--card);
+    stroke: var(--ink);
+    stroke-width: 2;
+    stroke-linejoin: round;
+  }
+  .route {
+    fill: none;
+    stroke: var(--red);
+    stroke-dasharray: 4 4;
+  }
+  text {
+    font-family: var(--font-hand);
+    font-size: 14px;
+    fill: var(--red-ink);
+  }
+}
+
+@keyframes turn {
+  from {
+    rotate: 180deg;
+  }
+  to {
+    rotate: 168deg;
+  }
+}
+
+.actor {
+  position: absolute;
+  right: 6%;
+  bottom: 0;
+  width: 40%;
+
+  [data-part="head"] {
+    rotate: -10deg;
+  }
+  [data-part="arm-a"] {
+    rotate: -110deg;
+  }
+}

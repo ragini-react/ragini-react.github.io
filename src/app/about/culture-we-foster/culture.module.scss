@@ -1,0 +1,57 @@
+.art {
+  position: relative;
+  max-width: 30rem;
+  margin-inline: auto;
+}
+
+.board {
+  width: 82%;
+
+  > rect {
+    fill: oklch(70.74% 0.0969 67.72);
+    stroke: var(--ink);
+    stroke-width: 3;
+  }
+}
+
+.card {
+  animation: pin 0.5s var(--ease-spring) both;
+  animation-delay: calc(0.4s + var(--i) * 0.25s);
+
+  rect {
+    fill: oklch(99.42% 0.0069 88.64);
+    stroke: oklch(21.54% 0.009 75.14);
+    stroke-width: 2;
+  }
+  path {
+    fill: none;
+    stroke: oklch(54.16% 0.1241 257.41);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+}
+
+@keyframes pin {
+  from {
+    opacity: 0;
+    translate: 0 -16px;
+  }
+}
+
+.pinner {
+  position: absolute;
+  right: 0;
+  bottom: -6%;
+  width: 26%;
+
+  [data-part="arm-b"] {
+    rotate: -140deg;
+    animation: reach 1.6s ease-in-out 1.6s 2 alternate;
+  }
+}
+
+@keyframes reach {
+  to {
+    rotate: -165deg;
+  }
+}

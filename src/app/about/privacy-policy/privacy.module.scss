@@ -1,0 +1,36 @@
+.doc {
+  display: grid;
+  gap: var(--space-4);
+
+  h1 {
+    font-size: var(--step-5);
+  }
+
+  h2 {
+    margin-top: var(--space-5);
+    font-size: var(--step-2);
+  }
+
+  ul {
+    padding-left: 1.2rem;
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  code {
+    padding: 0.05rem 0.35rem;
+    border-radius: 4px;
+    background: var(--paper-3);
+    font-size: 0.9em;
+  }
+}
+
+.products {
+  columns: 2 14rem;
+}
+
+.small {
+  margin-top: var(--space-5);
+  font-size: 0.88rem;
+  color: var(--ink-muted);
+}

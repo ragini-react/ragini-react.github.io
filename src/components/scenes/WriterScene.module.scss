@@ -1,0 +1,569 @@
+// Choreography (seconds from the moment the scene scrolls into view)
+// 0.0 walk in · 2.0 stop · 2.2 think · 2.6 bubble · 3.0–4.5 doodles
+// 4.6 eureka · 5.0 walk to desk · 6.2 sit · 6.6 type · 8.2 page flies out
+
+.scene {
+  margin: 0;
+  container-type: inline-size;
+}
+
+.stage {
+  --x0: -18cqw;
+  --x1: 20cqw;
+  --x2: 55cqw;
+  --sit: -6cqw;
+  --desk-x: 42cqw;
+  --actor-w: 12.5cqw;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+@container (max-width: 640px) {
+  .stage {
+    --x0: -30cqw;
+    --x1: 6cqw;
+    --x2: 43cqw;
+    --sit: -11.6cqw;
+    --desk-x: 18cqw;
+    --actor-w: 23cqw;
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 7%;
+  width: 100%;
+  height: 4%;
+
+  path {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 2.5;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+// ---- actor --------------------------------------------------------------
+
+.actor {
+  position: absolute;
+  left: 0;
+  bottom: 7.4%;
+  width: var(--actor-w);
+  translate: var(--x2) var(--sit);
+  animation: writer-path 7s linear both;
+
+  [data-part="leg-a"] {
+    animation:
+      swing-a 0.5s ease-in-out 0s 4,
+      swing-a 0.4s ease-in-out 5s 3,
+      legs-sit 0.35s ease-out 6.2s forwards;
+  }
+  [data-part="leg-b"] {
+    animation:
+      swing-b 0.5s ease-in-out 0s 4,
+      swing-b 0.4s ease-in-out 5s 3,
+      legs-sit 0.35s ease-out 6.2s forwards;
+  }
+  [data-part="arm-b"] {
+    animation:
+      swing-a 0.5s ease-in-out 0s 4,
+      swing-a 0.4s ease-in-out 5s 3,
+      reach 0.35s ease-out 6.4s forwards;
+  }
+  [data-part="arm-a"] {
+    animation:
+      swing-b 0.5s ease-in-out 0s 4,
+      to-chin 2.4s var(--ease-in-out) 2.2s,
+      swing-b 0.4s ease-in-out 5s 3,
+      reach 0.35s ease-out 6.4s forwards;
+  }
+  [data-part="forearm-a"] {
+    animation:
+      to-chin-fore 2.4s var(--ease-in-out) 2.2s,
+      type 0.16s ease-in-out 6.8s infinite alternate;
+  }
+  [data-part="forearm-b"] {
+    animation: type 0.19s ease-in-out 6.9s infinite alternate;
+  }
+  [data-part="head"] {
+    animation:
+      look-up 2.4s var(--ease-in-out) 2.2s,
+      nod 0.5s var(--ease-spring) 4.6s,
+      look-screen 0.4s ease-out 6.4s forwards;
+  }
+  [data-part="eyes"] {
+    animation: blink 4.2s steps(1) 7s infinite;
+  }
+  [data-expr="smile"] {
+    animation: hide 0.01s linear 2.2s forwards;
+  }
+  [data-expr="think"] {
+    animation: show-window 2.4s linear 2.2s forwards;
+  }
+  [data-expr="wow"] {
+    animation: show-window 1.8s linear 4.6s forwards;
+  }
+  [data-expr="focus"] {
+    animation: show 0.01s linear 6.4s forwards;
+  }
+}
+
+@keyframes writer-path {
+  0% {
+    translate: var(--x0) 0;
+  }
+  28.6% {
+    translate: var(--x1) 0;
+  }
+  71.4% {
+    translate: var(--x1) 0;
+  }
+  88.6% {
+    translate: var(--x2) 0;
+  }
+  94% {
+    translate: var(--x2) var(--sit);
+  }
+  100% {
+    translate: var(--x2) var(--sit);
+  }
+}
+
+@keyframes swing-a {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: 20deg;
+  }
+  75% {
+    rotate: -20deg;
+  }
+}
+@keyframes swing-b {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: -20deg;
+  }
+  75% {
+    rotate: 20deg;
+  }
+}
+@keyframes legs-sit {
+  to {
+    rotate: -78deg;
+  }
+}
+@keyframes reach {
+  to {
+    rotate: -62deg;
+  }
+}
+@keyframes type {
+  from {
+    rotate: -24deg;
+  }
+  to {
+    rotate: -12deg;
+  }
+}
+@keyframes to-chin {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  16%,
+  84% {
+    rotate: -148deg;
+  }
+}
+@keyframes to-chin-fore {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  16%,
+  84% {
+    rotate: 96deg;
+  }
+}
+@keyframes look-up {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  20%,
+  80% {
+    rotate: -9deg;
+  }
+}
+@keyframes nod {
+  40% {
+    rotate: 7deg;
+    translate: 0 2px;
+  }
+}
+@keyframes look-screen {
+  to {
+    rotate: 6deg;
+  }
+}
+@keyframes blink {
+  0%,
+  96% {
+    scale: 1 1;
+  }
+  97% {
+    scale: 1 0.1;
+  }
+}
+@keyframes hide {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes show {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes show-window {
+  0%,
+  99% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+// ---- thought bubble -------------------------------------------------------
+
+.thought {
+  position: absolute;
+  left: calc(var(--x1) + var(--actor-w) * 0.55);
+  top: 2%;
+  width: 30cqw;
+  overflow: visible;
+  animation: fade-away 0.5s ease 5.6s forwards;
+
+  circle,
+  .cloud {
+    fill: var(--card);
+    stroke: var(--ink);
+    stroke-width: 3;
+  }
+  .cloud {
+    transform-box: fill-box;
+    transform-origin: 10% 90%;
+    animation: pop 0.5s var(--ease-spring) 2.8s both;
+  }
+  .dot1 {
+    animation: pop 0.25s var(--ease-spring) 2.4s both;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .dot2 {
+    animation: pop 0.25s var(--ease-spring) 2.6s both;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  text {
+    font-family: var(--font-hand);
+    font-size: 22px;
+    fill: var(--ink);
+  }
+  .try1 {
+    animation: appear 0.3s ease 3.1s both;
+  }
+  .good {
+    font-size: 26px;
+    font-weight: 700;
+    fill: var(--red-ink);
+    animation: appear 0.3s ease 4.2s both;
+  }
+  .cross,
+  .doodle,
+  .circle {
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+  }
+  .cross {
+    stroke: var(--red);
+    animation: draw 0.35s var(--ease-pen) 3.5s both;
+  }
+  .doodle {
+    stroke: var(--ink-muted);
+    animation: draw 0.4s var(--ease-pen) 3.8s both;
+  }
+  .doodle + .doodle {
+    animation-delay: 4.05s;
+    animation-duration: 0.15s;
+  }
+  .doodle + .doodle + .doodle {
+    animation-delay: 3.95s;
+    animation-duration: 0.5s;
+  }
+  .circle {
+    stroke: var(--red);
+    animation: draw 0.45s var(--ease-pen) 4.45s both;
+  }
+}
+
+@container (max-width: 640px) {
+  .thought {
+    left: 26cqw;
+    width: 62cqw;
+  }
+}
+
+@keyframes pop {
+  from {
+    scale: 0;
+    opacity: 0;
+  }
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fade-away {
+  to {
+    opacity: 0;
+    translate: 0 -10px;
+  }
+}
+
+.bulb {
+  position: absolute;
+  left: calc(var(--x1) + var(--actor-w) * 0.1);
+  top: 9%;
+  width: 4.4cqw;
+  animation:
+    pop 0.4s var(--ease-spring) 4.5s both,
+    fade-away 0.5s ease 5.6s forwards;
+
+  .glass {
+    fill: var(--card);
+    stroke: var(--ink);
+    stroke-width: 3;
+    animation: light 0.3s ease 4.7s forwards;
+  }
+  .base,
+  .rays path {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 3;
+    stroke-linecap: round;
+  }
+  .rays {
+    opacity: 0;
+    animation: show 0.2s ease 4.75s forwards;
+  }
+}
+
+@container (max-width: 640px) {
+  .bulb {
+    left: 4cqw;
+    top: 16%;
+    width: 9cqw;
+  }
+}
+
+@keyframes light {
+  to {
+    fill: var(--marker);
+  }
+}
+
+// ---- desk -----------------------------------------------------------------
+
+.desk {
+  position: absolute;
+  left: var(--desk-x);
+  bottom: 7.6%;
+  width: 46cqw;
+  overflow: visible;
+
+  .ink,
+  .chair,
+  .top,
+  .lid,
+  .keys,
+  .paperFill {
+    stroke: var(--ink);
+    stroke-width: 3;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+  .ink {
+    fill: none;
+  }
+  .chair {
+    fill: oklch(61.38% 0.0823 62.13);
+  }
+  .top {
+    fill: oklch(71.81% 0.0921 70.36);
+  }
+  .lid {
+    fill: oklch(86.52% 0.0176 84.59);
+  }
+  .keys {
+    fill: oklch(77.58% 0.0215 81.77);
+  }
+  .paperFill {
+    fill: var(--card);
+  }
+  .screen {
+    fill: oklch(99.42% 0.0069 88.64);
+  }
+  .lines path {
+    fill: none;
+    stroke: oklch(54.16% 0.1241 257.41);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    animation: draw 0.5s linear both;
+  }
+  .lines path:nth-child(1) {
+    animation-delay: 6.8s;
+  }
+  .lines path:nth-child(2) {
+    animation-delay: 7.2s;
+  }
+  .lines path:nth-child(3) {
+    animation-delay: 7.6s;
+  }
+  .lines path:nth-child(4) {
+    animation-delay: 7.95s;
+  }
+}
+
+@container (max-width: 640px) {
+  .desk {
+    width: 86cqw;
+  }
+}
+
+// The chair back sits behind the actor, the desk top in front. A second
+// stacking layer keeps the actor between them.
+.actor {
+  z-index: 2;
+}
+.desk {
+  z-index: 1;
+}
+
+// ---- the finished page ----------------------------------------------------
+
+.page {
+  position: absolute;
+  z-index: 3;
+  right: 3cqw;
+  top: 5%;
+  width: min(27cqw, 20rem);
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.1rem 1.1rem 1rem;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 6px 10px 8px 12px;
+  box-shadow: 5px 5px 0 var(--ink);
+  rotate: -3deg;
+  text-decoration: none;
+  color: var(--ink);
+  animation: page-fly 1.2s var(--ease-out) 8.2s both;
+  transition:
+    rotate var(--dur-2) var(--ease-spring),
+    box-shadow var(--dur-2);
+
+  &:hover {
+    rotate: -1deg;
+    box-shadow: 7px 7px 0 var(--red);
+  }
+
+  // Keyboard users can always reach and see it, even mid-animation.
+  &:focus-visible {
+    opacity: 1 !important;
+    translate: 0 0 !important;
+    scale: 1 !important;
+  }
+}
+
+@container (max-width: 640px) {
+  .page {
+    left: 6cqw;
+    right: auto;
+    top: 3%;
+    width: 72cqw;
+  }
+}
+
+@keyframes page-fly {
+  0% {
+    opacity: 0;
+    translate: -14cqw 26cqw;
+    scale: 0.12;
+    rotate: 8deg;
+  }
+  15% {
+    opacity: 1;
+  }
+  60% {
+    translate: -4cqw -2cqw;
+    scale: 0.9;
+    rotate: -8deg;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    rotate: -3deg;
+  }
+}
+
+.pageKicker {
+  font-family: var(--font-hand);
+  color: var(--red-ink);
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+.pageTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 0.7rem + 1.2cqw, 1.3rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+}
+
+.pageMeta {
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
+.pageCta {
+  font-weight: 650;
+  font-size: 0.9rem;
+}

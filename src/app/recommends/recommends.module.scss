@@ -1,0 +1,113 @@
+.cabinet {
+  list-style: none;
+  display: grid;
+  gap: var(--space-8) var(--space-6);
+  grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: var(--space-4);
+  align-items: start;
+  padding-bottom: var(--space-5);
+
+  // a little shelf under each object
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 7.5rem;
+    top: 6.6rem;
+    height: 9px;
+    background: oklch(66.78% 0.0878 67.09);
+    border: 2px solid var(--ink);
+    border-radius: 3px;
+  }
+}
+
+.obj {
+  width: 6.5rem;
+  height: 6.5rem;
+  overflow: visible;
+  transition: rotate var(--dur-3) var(--ease-spring), translate var(--dur-3) var(--ease-spring);
+
+  * {
+    stroke: var(--ink);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.item:hover .obj {
+  rotate: -6deg;
+  translate: 0 -4px;
+}
+
+.fillA {
+  fill: oklch(33.53% 0.0103 73.56);
+}
+.fillB {
+  fill: var(--card);
+}
+.fillC {
+  fill: var(--marker);
+}
+.hole {
+  fill: var(--paper);
+}
+.line {
+  fill: none;
+}
+.lineBlue {
+  fill: none;
+  stroke: var(--sky) !important;
+}
+.heart,
+.redDot {
+  fill: var(--red);
+}
+
+.tag {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5);
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 4px 12px 12px 4px;
+  position: relative;
+
+  // the string on a museum label
+  &::before {
+    content: "";
+    position: absolute;
+    left: -1.1rem;
+    top: 1.4rem;
+    width: 1.1rem;
+    border-top: 2px dashed var(--ink-muted);
+  }
+
+  :global(.pen-link) {
+    justify-self: start;
+  }
+}
+
+.kind {
+  font-family: var(--font-hand);
+  color: var(--red-ink);
+}
+
+.title {
+  font-size: var(--step-2);
+}
+
+.who {
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+}
+
+.suggest {
+  font-size: var(--step-3);
+}
