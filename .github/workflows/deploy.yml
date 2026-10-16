@@ -57,6 +57,23 @@ jobs:
         env:
           BASE_PATH: ${{ vars.PAGES_BASE_PATH || steps.pages.outputs.base_path }}
 
+      # Also serve a full copy under /walkover-web/ (the site's earlier address).
+      # `next build` directly skips prebuild, so both copies share one jobs.json.
+      - name: Build /walkover-web/ copy
+        run: |
+          mv out out-root
+          npx next build
+          node scripts/check-links.mjs --internal-only
+          mv out out-root/walkover-web
+          mv out-root out
+        env:
+          BASE_PATH: /walkover-web
+          NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL || 'https://walkover.in' }}
+          NEXT_PUBLIC_NOINDEX: ${{ vars.NEXT_PUBLIC_NOINDEX }}
+          NEXT_PUBLIC_CONTACT_ENDPOINT: ${{ vars.NEXT_PUBLIC_CONTACT_ENDPOINT }}
+          NEXT_PUBLIC_NEWSLETTER_ENDPOINT: ${{ vars.NEXT_PUBLIC_NEWSLETTER_ENDPOINT }}
+          NEXT_PUBLIC_MAILCHIMP_URL: ${{ vars.NEXT_PUBLIC_MAILCHIMP_URL }}
+
       - uses: actions/upload-pages-artifact@v5
         with:
           path: out
